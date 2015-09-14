@@ -76,7 +76,7 @@ class Coupon implements JsonSerializable
      */
     public static function fromStripeCoupon($stripeCoupon)
     {
-        $coupon = new static($stripeCoupon->id, '');
+        $coupon = new static($stripeCoupon->id);
 
         if ($stripeCoupon->duration === 'forever') {
             $coupon->shouldLastForever();
