@@ -7,7 +7,7 @@
 
 <!-- Main Content -->
 @section('content')
-<spark-simple-register-screen inline-template>
+<spark-simple-registration-screen inline-template>
 	<div id="spark-register-screen" class="container-fluid spark-screen">
 		<!-- Invitation -->
 		<div class="row">
@@ -23,5 +23,5 @@
 			</div>
 		</div>
 	</div>
-</spark-simple-register-screen>
+</spark-simple-registration-screen>
 @endsection
