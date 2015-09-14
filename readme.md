@@ -10,9 +10,9 @@
 <a name="introduction"></a>
 ## Introduction
 
-**This is an Alpha release of Spark. Things will change. Things will break. Thank you for testing!**
+**This is an alpha, experimental release of Spark. Things will change. Things will break. Thank you for testing!**
 
-**Spark is primarily intended for building business oriented SaaS applications, and is highly opinionated towards that use case.**
+Spark is an experimental project primarily intended for building business oriented SaaS applications, and is highly opinionated towards that use case.
 
 <a name="installation"></a>
 ## Installation
