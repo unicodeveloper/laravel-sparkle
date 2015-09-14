@@ -23,5 +23,5 @@
 			</div>
 		</div>
 	</div>
-</spark-register-screen>
+</spark-simple-register-screen>
 @endsection
