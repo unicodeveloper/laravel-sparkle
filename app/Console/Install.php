@@ -212,8 +212,13 @@ class Install extends Command
      */
     protected function installJavaScript()
     {
-        mkdir(base_path('resources/assets/js'));
-        mkdir(base_path('resources/assets/js/spark'));
+        if (! is_dir('resources/assets/js')) {
+            mkdir(base_path('resources/assets/js'));
+        }
+
+        if (! is_dir('resources/assets/js/spark')) {
+            mkdir(base_path('resources/assets/js/spark'));
+        }
 
         copy(
             SPARK_PATH.'/resources/stubs/resources/assets/js/app.js',
