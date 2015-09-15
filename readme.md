@@ -98,6 +98,6 @@ The published views will be placed in `resources/views/vendor/spark`.
 <a name="customizing-spark-javascript"></a>
 ## Customizing Spark JavaScript
 
-The `resources/js/spark/components.js` file contains the statements to load some common Spark Vue components. [Vue](http://vuejs.org) is the JavaScript framework used by the Spark registration and settings screens.
+The `resources/assets/js/spark/components.js` file contains the statements to load some common Spark Vue components. [Vue](http://vuejs.org) is the JavaScript framework used by the Spark registration and settings screens.
 
 You are free to change any of these require statements to load your own Vue component for a given screen. Most likely, you will want to copy the original component as a starting point for your customization.
