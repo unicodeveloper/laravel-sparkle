@@ -93,7 +93,9 @@ You may publish Spark's Blade views by using the `vendor:publish` command:
 ```
 	php artisan vendor:publish --tag=spark-basics
 ```
-The published views will be placed in `resources/views/vendor/spark`.
+This will copy the basic view files.
+All published views will be placed in `resources/views/vendor/spark`.
+You have also the option `--tag=spark-full` to copy all view files.
 
 <a name="customizing-spark-javascript"></a>
 ## Customizing Spark JavaScript
