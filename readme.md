@@ -89,13 +89,19 @@ Team roles may be defined in the `customizeRoles` method of the `SparkServicePro
 <a name="customizing-spark-views"></a>
 ## Customizing Spark Views
 
-You may publish Spark's Blade views by using the `vendor:publish` command:
+You may publish Spark's common Blade views by using the `vendor:publish` command:
+
 ```
 	php artisan vendor:publish --tag=spark-basics
 ```
-This will copy the basic view files.
+
 All published views will be placed in `resources/views/vendor/spark`.
-You have also the option `--tag=spark-full` to copy all view files.
+
+If you would like to publish every Spark view, you may use the `spark-full` tag:
+
+```
+	php artisan vendor:publish --tag=spark-full
+```
 
 <a name="customizing-spark-javascript"></a>
 ## Customizing Spark JavaScript
