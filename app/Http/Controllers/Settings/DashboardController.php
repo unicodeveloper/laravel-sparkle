@@ -32,7 +32,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Shwo the settings dashboard.
+     * Show the settings dashboard.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

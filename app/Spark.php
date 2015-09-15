@@ -196,7 +196,7 @@ class Spark
      * Get or define the default role for team members.
      *
      * @param  string|null  $role
-     * @return string|vpid
+     * @return string|void
      */
     public static function defaultRole($role = null)
     {
