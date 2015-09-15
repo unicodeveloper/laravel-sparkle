@@ -41,7 +41,7 @@ Subscription plans may be defined in your `app/Providers/SparkServiceProvider.ph
 When defining a Spark plan, the `plan` method accepts two arguments: the name of the plan and the Stripe ID of the plan. Be sure that the Stripe ID given to the `plan` method corresponds to a plan ID on your Stripe account:
 ```php
 	Spark::plan('Display Name', 'stripe-id')
-		->price(10);
+		->price(10)
 		->features([
 			//
 		]);
