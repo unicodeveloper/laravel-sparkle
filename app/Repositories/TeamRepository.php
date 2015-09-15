@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Repositories;
 
+use Laravel\Spark\Spark;
 use Laravel\Spark\Contracts\Repositories\TeamRepository as Contract;
 
 class TeamRepository implements Contract
@@ -89,7 +90,7 @@ class TeamRepository implements Contract
 
         $inviteModel = get_class((new $userModel)->invitations()->getQuery()->getModel());
 
-        $invitation = (new $inviteModel)->where('token', $invitation)->first();
+        $invitation = (new $inviteModel)->where('token', $invitationId)->first();
 
         if ($invitation) {
             $invitation->team->users()->attach([$user->id], ['role' => Spark::defaultRole()]);

@@ -27,7 +27,7 @@ class Invitation extends Model
      *
      * @var array
      */
-    protected $hidden = ['token'];
+    protected $hidden = [];
 
     /**
      * Get the team that owns the invitation.
