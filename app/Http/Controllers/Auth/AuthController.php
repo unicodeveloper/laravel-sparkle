@@ -78,7 +78,7 @@ class AuthController extends Controller
      * Send the post-authentication response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $users
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return \Illuminate\Http\Response
      */
     protected function authenticated(Request $request, Authenticatable $user)

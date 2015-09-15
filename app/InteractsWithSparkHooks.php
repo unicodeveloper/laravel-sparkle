@@ -9,7 +9,7 @@ use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 trait InteractsWithSparkHooks
 {
     /**
-     * Get the repsonse from a custom validator callback.
+     * Get the response from a custom validator callback.
      *
      * @param  callable|string  $callback
      * @param  \Illuminate\Http\Request  $request
