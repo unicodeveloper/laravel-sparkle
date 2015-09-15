@@ -77,7 +77,7 @@
                         </ul>
                     </div>
                     <div>
-                        <img src="https://placehold.it/550x400" style="width: 100%;">
+                        <img src="https://placehold.co/550x400" style="width: 100%;">
                     </div>
                 </div>
             </div>
