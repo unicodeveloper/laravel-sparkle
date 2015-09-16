@@ -251,7 +251,7 @@ class Install extends Command
      */
     protected function installEnvironmentVariables()
     {
-        if ( ! file_exists(base_path('.env'))){
+        if (! file_exists(base_path('.env'))) {
             return;
         }
 
