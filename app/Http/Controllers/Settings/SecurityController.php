@@ -49,7 +49,7 @@ class SecurityController extends Controller
     {
         $this->validate($request, [
             'old_password' => 'required',
-            'password' => 'required|confirmed|max:6',
+            'password' => 'required|confirmed|min:6',
         ]);
 
         if (! Hash::check($request->old_password, Auth::user()->password)) {
