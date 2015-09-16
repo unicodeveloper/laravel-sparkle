@@ -251,6 +251,10 @@ class Install extends Command
      */
     protected function installEnvironmentVariables()
     {
+        if ( ! file_exists(base_path('.env'))){
+            return;
+        }
+
         $env = file_get_contents(base_path('.env'));
 
         if (str_contains($env, 'AUTHY_KEY=')) {
