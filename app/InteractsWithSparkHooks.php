@@ -24,7 +24,7 @@ trait InteractsWithSparkHooks
             $callback = [app($class), $method];
         }
 
-        $validator = call_user_func($callback, array_merge([$request], $arguments));
+        $validator = call_user_func_array($callback, array_merge([$request], $arguments));
 
         $validator = $validator instanceof ValidatorContract
                         ? $validator

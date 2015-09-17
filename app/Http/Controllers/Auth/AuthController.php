@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Subscriptions\Plan;
 use Laravel\Spark\Events\User\Registered;
 use Laravel\Spark\Events\User\Subscribed;
+use Laravel\Spark\InteractsWithSparkHooks;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -25,7 +26,7 @@ use Laravel\Spark\Contracts\Auth\Subscriber as SubscriberContract;
 
 class AuthController extends Controller
 {
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins, ValidatesRequests;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins, ValidatesRequests, InteractsWithSparkHooks;
 
     /**
      * The user repository instance.
@@ -226,9 +227,9 @@ class AuthController extends Controller
      */
     protected function validateRegistration(Request $request, $withSubscription = false)
     {
-        if (Spark::$validateProfileUpdatesWith) {
+        if (Spark::$validateRegistrationsWith) {
             $this->callCustomValidator(
-                Spark::$validateProfileUpdatesWith, $request, [$withSubscription]
+                Spark::$validateRegistrationsWith, $request, [$withSubscription]
             );
         } else {
             $this->validateDefaultRegistration($request, $withSubscription);
