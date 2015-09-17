@@ -58,6 +58,20 @@ class Plan implements JsonSerializable
     public $features = [];
 
     /**
+     * The attributes of a plan help determine functional differences between plans.
+     *
+     * E.g.
+     * ```
+     *  [
+     *     'limitProjects' => 10
+     *  ]
+     * ```
+     *
+     * @var array
+     */
+    public $attributes = [];
+
+    /**
      * The billing interval for the plan.
      *
      * @var string
@@ -234,6 +248,23 @@ class Plan implements JsonSerializable
     }
 
     /**
+     * Set the attributes of the plan.
+     *
+     * @param  array|null  $attributes
+     * @return $this|array
+     */
+    public function attributes(array $attributes = null)
+    {
+        if (is_null($attributes)) {
+            return $this->attributes;
+        }
+
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
      * Specify that the plan has a monthly interval.
      *
      * @return $this
@@ -304,6 +335,7 @@ class Plan implements JsonSerializable
             'trialDays' => $this->trialDays,
             'tier' => $this->tier,
             'features' => $this->features,
+            'attributes' => $this->attributes,
             'interval' => $this->interval,
             'active' => $this->active,
         ];
