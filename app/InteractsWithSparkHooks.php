@@ -18,6 +18,27 @@ trait InteractsWithSparkHooks
      */
     public function callCustomValidator($callback, Request $request, array $arguments = [])
     {
+        if (! $callback instanceof ValidatorContract) {
+            $validator = $this->getCustomValidator($callback, $request, $arguments);
+        } else {
+            $validator = $callback;
+        }
+
+        if ($validator->fails()) {
+            $this->throwValidationException($request, $validator);
+        }
+    }
+
+    /**
+     * Get the custom validator based on the given callback.
+     *
+     * @param  callable|string  $callback
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $arguments
+     * @return \Illuminate\ContractsValidation\Validator
+     */
+    protected function getCustomValidator($callback, Request $request, array $arguments = [])
+    {
         if (is_string($callback)) {
             list($class, $method) = explode('@', $callback);
 
@@ -26,13 +47,9 @@ trait InteractsWithSparkHooks
 
         $validator = call_user_func_array($callback, array_merge([$request], $arguments));
 
-        $validator = $validator instanceof ValidatorContract
+        return $validator instanceof ValidatorContract
                         ? $validator
                         : Validator::make($request->all(), $validator);
-
-        if ($validator->fails()) {
-            $this->throwValidationException($request, $validator);
-        }
     }
 
     /**

@@ -228,12 +228,30 @@ class AuthController extends Controller
     protected function validateRegistration(Request $request, $withSubscription = false)
     {
         if (Spark::$validateRegistrationsWith) {
-            $this->callCustomValidator(
-                Spark::$validateRegistrationsWith, $request, [$withSubscription]
-            );
+            $this->callCustomRegistrationValidator($request, $withSubscription);
         } else {
             $this->validateDefaultRegistration($request, $withSubscription);
         }
+    }
+
+    /**
+     * Validate the new custom registration.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  bool  $withSubscription
+     * @return void
+     */
+    protected function callCustomRegistrationValidator(Request $request, $withSubscription)
+    {
+        $validator = $this->getCustomValidator(
+            Spark::$validateRegistrationsWith, $request, [$withSubscription]
+        );
+
+        if ($withSubscription) {
+            $this->addSubscriptionRulesToValidator($validator, $request);
+        }
+
+        $this->callCustomValidator($validator, $request);
     }
 
     /**
@@ -253,17 +271,29 @@ class AuthController extends Controller
         ]);
 
         if ($withSubscription) {
-            $validator->mergeRules('stripe_token', 'required');
-
-            if ($request->coupon) {
-                $validator->after(function ($validator) use ($request) {
-                    $this->validateCoupon($validator, $request);
-                });
-            }
+            $this->addSubscriptionRulesToValidator($validator, $request);
         }
 
         if ($validator->fails()) {
             $this->throwValidationException($request, $validator);
+        }
+    }
+
+    /**
+     * Add the subscription rules to the registration validator.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function addSubscriptionRulesToValidator($validator, Request $request)
+    {
+        $validator->mergeRules('stripe_token', 'required');
+
+        if ($request->coupon) {
+            $validator->after(function ($validator) use ($request) {
+                $this->validateCoupon($validator, $request);
+            });
         }
     }
 
