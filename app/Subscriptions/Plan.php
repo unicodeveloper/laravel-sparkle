@@ -158,7 +158,7 @@ class Plan implements JsonSerializable
     /**
      * Set the currency symbol used by the plan.
      *
-     * @param  string  $symbol
+     * @param  string  $currencySymbol
      * @return $this|string
      */
     public function currencySymbol($currencySymbol)
@@ -185,7 +185,7 @@ class Plan implements JsonSerializable
     /**
      * Specify the number of trial days the plan receives.
      *
-     * @param  int  $days
+     * @param  int  $trialDays
      * @return $this
      */
     public function trialDays($trialDays = null)

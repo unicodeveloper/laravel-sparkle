@@ -41,7 +41,7 @@ class DashboardTabs extends Tabs
     /**
      * Get the tab configuration for the "subscription" tab.
      *
-     * @return \Laravel\Spark\Ux\Settings\Tab|null
+     * @return \Laravel\Spark\Ux\Settings\Tab|void
      */
     public function subscription($force = false)
     {

@@ -60,7 +60,6 @@ class Coupon implements JsonSerializable
      * Create a new coupon instance.
      *
      * @param  string  $id
-     * @param  string  $name
      * @return void
      */
     public function __construct($id)
