@@ -34,7 +34,7 @@ class Authy implements Provider
             'form_params' => [
                 'user' => [
                     'email' => $user->getEmailForTwoFactorAuth(),
-                    'cellphone' => str_replace(['-', '.'], '', $user->getAuthPhoneNumber()),
+                    'cellphone' => preg_replace('/[^0-9]/', '', $user->getAuthPhoneNumber()),
                     'country_code' => $user->getAuthCountryCode(),
                 ],
             ],
