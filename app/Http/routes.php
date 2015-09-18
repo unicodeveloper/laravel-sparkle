@@ -48,7 +48,7 @@ $router->get('login', 'Auth\AuthController@getLogin');
 $router->post('login', 'Auth\AuthController@postLogin');
 $router->get('logout', 'Auth\AuthController@getLogout');
 
-// TWo-Factor Authentication Routes...
+// Two-Factor Authentication Routes...
 $router->get('login/token', 'Auth\AuthController@getToken');
 $router->post('login/token', 'Auth\AuthController@postToken');
 
