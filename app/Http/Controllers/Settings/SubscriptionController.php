@@ -52,16 +52,10 @@ class SubscriptionController extends Controller
     {
         $this->validateSubscription($request);
 
-        $plan = Spark::plans()->find($request->plan);
-
         $stripeCustomer = Auth::user()->stripe_id
                 ? Auth::user()->subscription()->getStripeCustomer() : null;
 
-        Auth::user()->subscription($request->plan)
-                ->skipTrial()
-                ->create($request->stripe_token, [
-                    'email' => Auth::user()->email,
-                ], $stripeCustomer);
+        $this->users->createSubscriptionOnStripe($request, Auth::user(), $stripeCustomer);
 
         event(new Subscribed(Auth::user()));
 

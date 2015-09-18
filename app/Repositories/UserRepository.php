@@ -87,15 +87,17 @@ class UserRepository implements Contract
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param  \Stripe\Customer  $stripeCustomer
      * @return void
      */
-    protected function createSubscriptionOnStripe(Request $request, $user)
+    public function createSubscriptionOnStripe(Request $request, $user, $stripeCustomer = null)
     {
         $plan = Spark::plans()->find($request->plan);
 
         $subscription = $user->subscription($plan->id);
 
-        if ($plan->hasTrial()) {
+        // Only allow trials for new Stripe customers
+        if ($plan->hasTrial() && $stripeCustomer === null) {
             $subscription->trialFor(Carbon::now()->addDays($plan->trialDays));
         }
 
@@ -103,8 +105,25 @@ class UserRepository implements Contract
             $subscription->withCoupon($request->coupon);
         }
 
+        if (Spark::$createSubscriptionsWith) {
+            $this->callCustomUpdater(Spark::$createSubscriptionsWith, $request, [$user, $subscription, $stripeCustomer]);
+        } else {
+            $this->createDefaultSubscription($request, $user, $subscription, $stripeCustomer);
+        }
+    }
+
+    /**
+     * Create the default stripe subscription for a new registration.
+     *
+     * @param Request $request
+     * @param $user
+     * @param $subscription
+     * @param  \Stripe\Customer  $stripeCustomer
+     */
+    protected function createDefaultSubscription(Request $request, $user, $subscription, $stripeCustomer = null)
+    {
         $subscription->create($request->stripe_token, [
             'email' => $user->email,
-        ]);
+        ], $stripeCustomer);
     }
 }

@@ -21,4 +21,14 @@ interface UserRepository
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
     public function createUserFromRegistrationRequest(Request $request, $withSubscription = false);
+
+    /**
+     * Create the subscription on Stripe.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param  \Stripe\Customer  $stripeCustomer
+     * @return void
+     */
+    public function createSubscriptionOnStripe(Request $request, $user, $stripeCustomer = null);
 }
