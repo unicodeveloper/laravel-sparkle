@@ -87,7 +87,7 @@ class UserRepository implements Contract
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
-     * @param  \Stripe\Customer  $stripeCustomer
+     * @param  \Stripe\Customer|null  $stripeCustomer
      * @return void
      */
     public function createSubscriptionOnStripe(Request $request, $user, $stripeCustomer = null)
@@ -118,7 +118,7 @@ class UserRepository implements Contract
      * @param Request $request
      * @param $user
      * @param $subscription
-     * @param  \Stripe\Customer  $stripeCustomer
+     * @param  \Stripe\Customer|null  $stripeCustomer
      */
     protected function createDefaultSubscription(Request $request, $user, $subscription, $stripeCustomer = null)
     {
