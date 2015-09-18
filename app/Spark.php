@@ -60,6 +60,13 @@ class Spark
     public static $createUsersWith;
 
     /**
+     * The callback used to move a user to another plan.
+     *
+     * @var callable|null
+     */
+    public static $swapSubscriptionsWith;
+
+    /**
      * Indicates if two-factor authentication is supported.
      *
      * @var bool
@@ -345,6 +352,17 @@ class Spark
     public static function createUsersWith($callback)
     {
         static::$createUsersWith = $callback;
+    }
+
+    /**
+     * Set a callback to be used when moving the user to another plan.
+     *
+     * @param  callable|string  $callback
+     * @return void
+     */
+    public static function swapSubscriptionsWith($callback)
+    {
+        static::$swapSubscriptionsWith = $callback;
     }
 
     /**

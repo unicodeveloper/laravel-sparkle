@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Events\User\Subscribed;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Spark\InteractsWithSparkHooks;
 use Illuminate\View\Expression as ViewExpression;
 use Laravel\Spark\Events\User\SubscriptionResumed;
 use Laravel\Spark\Events\User\SubscriptionCancelled;
@@ -19,7 +20,7 @@ use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
 class SubscriptionController extends Controller
 {
-	use ValidatesRequests;
+	use InteractsWithSparkHooks, ValidatesRequests;
 
     /**
      * The user repository instance.
@@ -87,6 +88,8 @@ class SubscriptionController extends Controller
 
         if ($plan->price() === 0) {
             $this->cancelSubscription();
+        } elseif (Spark::$swapSubscriptionsWith) {
+            $this->callCustomUpdater(Spark::$swapSubscriptionsWith, $request, [Auth::user()]);
         } else {
             Auth::user()->subscription($request->plan)
                     ->maintainTrial()->prorate()->swapAndInvoice();
