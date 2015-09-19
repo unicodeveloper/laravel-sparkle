@@ -1,5 +1,5 @@
 <!-- Registration -> Individual Plan Display Block -->
-<div class="panel panel-default spark-plan">
+<div class="panel panel-default spark-plan spark-plan-@{{ plan.id }}">
 	<div class="panel-heading text-center">@{{ plan.name }}</div>
 	<div class="panel-body">
 		<ul>
