@@ -41,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
             $this->customizeSubscriptionPlans();
         }
 
+        if (method_exists($this, 'customizeSubscriptions')) {
+            $this->customizeSubscriptions();
+        }
+
         if (method_exists($this, 'customizeSettingsTabs')) {
             $this->customizeSettingsTabs();
         }

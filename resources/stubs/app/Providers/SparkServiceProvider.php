@@ -152,4 +152,19 @@ class SparkServiceProvider extends ServiceProvider
         //             'Feature 3',
         //         ]);
     }
+
+    /**
+     * Customize Spark's subscription logic.
+     *
+     * @return void
+     */
+    protected function customizeSubscriptions()
+    {
+        // Spark::validateSubscriptionsWith(function (Request $request) {
+        //     return [
+        //         'name' => 'required|max:255',
+        //         'email' => 'required|email|unique:users,email,'.$request->user()->id,
+        //     ];
+        // });
+    }
 }

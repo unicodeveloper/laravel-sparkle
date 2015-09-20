@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Events\User\Subscribed;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Spark\InteractsWithSparkHooks;
 use Illuminate\View\Expression as ViewExpression;
 use Laravel\Spark\Events\User\SubscriptionResumed;
 use Laravel\Spark\Events\User\SubscriptionCancelled;
@@ -19,7 +20,7 @@ use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
 class SubscriptionController extends Controller
 {
-	use ValidatesRequests;
+	use InteractsWithSparkHooks, ValidatesRequests;
 
     /**
      * The user repository instance.
@@ -49,11 +50,7 @@ class SubscriptionController extends Controller
      */
     public function subscribe(Request $request)
     {
-        $this->validate($request, [
-            'plan' => 'required',
-            'terms' => 'required|accepted',
-            'stripe_token' => 'required',
-        ]);
+        $this->validateSubscription();
 
         $plan = Spark::plans()->find($request->plan);
 
@@ -172,5 +169,26 @@ class SubscriptionController extends Controller
         ], Spark::generateInvoicesWith());
 
         return Auth::user()->downloadInvoice($invoiceId, $data);
+    }
+
+    /**
+     * Validate the incoming request to subscribe the user to a plan.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateSubscription(Request $request)
+    {
+        if (Spark::$validateSubscriptionsWith) {
+            $this->callCustomValidator(
+                Spark::$validateSubscriptionsWith, $request
+            );
+        } else {
+            $this->validate($request, [
+                'plan' => 'required',
+                'terms' => 'required|accepted',
+                'stripe_token' => 'required',
+            ]);
+        }
     }
 }

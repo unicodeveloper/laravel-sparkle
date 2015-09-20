@@ -60,6 +60,14 @@ class Spark
     public static $createUsersWith;
 
     /**
+     * The callback used to retrieve the user subscription validator.
+     *
+     * @var callable|null
+     */
+    public static $validateSubscriptionsWith;
+
+
+    /**
      * Indicates if two-factor authentication is supported.
      *
      * @var bool
@@ -346,6 +354,18 @@ class Spark
     {
         static::$createUsersWith = $callback;
     }
+
+    /**
+     * Set a callback to be used to retrieve the subscription validator.
+     *
+     * @param  callable|string  $callback
+     * @return void
+     */
+    public static function validateSubscriptionsWith($callback)
+    {
+        static::$validateSubscriptionsWith = $callback;
+    }
+
 
     /**
      * Specify that two-factor authentication should be available.
