@@ -49,8 +49,10 @@ $router->post('login', 'Auth\AuthController@postLogin');
 $router->get('logout', 'Auth\AuthController@getLogout');
 
 // Two-Factor Authentication Routes...
-$router->get('login/token', 'Auth\AuthController@getToken');
-$router->post('login/token', 'Auth\AuthController@postToken');
+if (Spark::supportsTwoFactorAuth()) {
+    $router->get('login/token', 'Auth\AuthController@getToken');
+    $router->post('login/token', 'Auth\AuthController@postToken');
+}
 
 // Registration Routes...
 $router->get('register', 'Auth\AuthController@getRegister');
