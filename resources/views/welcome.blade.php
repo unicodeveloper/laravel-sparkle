@@ -221,7 +221,7 @@
                     @foreach ($plans as $plan)
                         @if ($plan->isActive())
                             <div class="{{ $columns }}">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default spark-plan-{{ $plan->id }}">
                                     <div class="panel-heading splash-plan-heading">
                                         {{ $plan->name }}
                                     </div>

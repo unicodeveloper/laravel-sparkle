@@ -16,7 +16,7 @@
 		}
 
 		i {
-			color: #f4645f;
+			color: $brand-primary;
 			margin-right: 15px;
 		}
 	}
@@ -281,6 +281,7 @@
 
 			a {
 				color: #aaa;
+				text-decoration: none;
 			}
 		}
 	}

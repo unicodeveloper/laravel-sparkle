@@ -2,7 +2,8 @@ Hi {{ explode(' ', $user->name)[0] }}!
 
 <br><br>
 
-Here is a link allowing you to reset your password: {{ url('password/reset/'.$token) }}
+Here is a link allowing you to reset your password:
+<a href="{{ url('password/reset/'.$token) }}">{{ url('password/reset/'.$token) }}</a>
 
 <br><br>
 
