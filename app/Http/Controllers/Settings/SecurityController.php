@@ -105,7 +105,7 @@ class SecurityController extends Controller
         $input = $request->all();
 
         if (isset($input['phone_number'])) {
-            $input['phone_number'] = str_replace(['-', '.'], '', $input['phone_number']);
+            $input['phone_number'] = preg_replace('/[^0-9]/', '', $input['phone_number']);
         }
 
         $validator = Validator::make($input, [
