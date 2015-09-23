@@ -42,6 +42,7 @@ class Install extends Command
         $this->installSass();
         $this->installEnvironmentVariables();
         $this->installTerms();
+        $this->call('key:generate');
 
         $this->table(
             ['Task', 'Status'],
