@@ -4,6 +4,7 @@ namespace Laravel\Spark;
 
 use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Teams\CanJoinTeams;
+use Laravel\Spark\Subscriptions\Plans;
 use Laravel\Spark\Ux\Settings\TeamTabs;
 use Laravel\Spark\Ux\Settings\DashboardTabs;
 use Laravel\Spark\Services\Auth\TwoFactor\Authy;
@@ -252,7 +253,7 @@ class Spark
      */
     public static function plans()
     {
-        return static::$plans ?: static::$plans = new Subscriptions\Plans;
+        return static::$plans ?: static::$plans = new Plans;
     }
 
     /**
