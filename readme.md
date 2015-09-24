@@ -62,7 +62,7 @@ To define a yearly plan, simply call the `yearly` method on the plan definition:
 
 To use a coupon, simply create the coupon on Stripe and access the `/register` route with a `coupon` query string variable that matches the ID of the coupon on Stripe.
 
-	http://stripe.app/register?coupon=code
+	    http://stripe.app/register?coupon=code
 
 Site-wide promotions may be run using the `Spark::promotion` method within your `SparkServiceProvider`:
 ```php
