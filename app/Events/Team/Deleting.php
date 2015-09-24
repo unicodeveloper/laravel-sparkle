@@ -23,6 +23,6 @@ class Deleting
      */
     public function __construct($team)
     {
-    	$this->team = $team;
+        $this->team = $team;
     }
 }

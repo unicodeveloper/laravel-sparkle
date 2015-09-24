@@ -34,7 +34,7 @@ class Invitation extends Model
      */
     public function team()
     {
-    	return $this->belongsTo(Spark::model('teams', Team::class), 'team_id');
+        return $this->belongsTo(Spark::model('teams', Team::class), 'team_id');
     }
 
     /**

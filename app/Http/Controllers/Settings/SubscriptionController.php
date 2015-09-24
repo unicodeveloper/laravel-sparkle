@@ -63,7 +63,7 @@ class SubscriptionController extends Controller
         Auth::user()->subscription($request->plan)
                 ->skipTrial()
                 ->create($request->stripe_token, [
-                    'email' => Auth::user()->email
+                    'email' => Auth::user()->email,
                 ], $stripeCustomer);
 
         event(new Subscribed(Auth::user()));
@@ -106,7 +106,7 @@ class SubscriptionController extends Controller
     public function updateCard(Request $request)
     {
         $this->validate($request, [
-            'stripe_token' => 'required'
+            'stripe_token' => 'required',
         ]);
 
         Auth::user()->updateCard($request->stripe_token);

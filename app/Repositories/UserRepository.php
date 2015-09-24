@@ -13,21 +13,21 @@ class UserRepository implements Contract
 {
     use InteractsWithSparkHooks;
 
-	/**
-	 * Get the current user of the application.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function getCurrentUser()
-	{
-		$user = Spark::user();
+    /**
+     * Get the current user of the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCurrentUser()
+    {
+        $user = Spark::user();
 
-		if (Spark::usingTeams()) {
-			$user->currentTeam;
-		}
+        if (Spark::usingTeams()) {
+            $user->currentTeam;
+        }
 
-		return $user->withHidden(['last_four', 'extra_billing_info']);
-	}
+        return $user->withHidden(['last_four', 'extra_billing_info']);
+    }
 
     /**
      * Create a new user of the application based on a registration request.
@@ -36,8 +36,8 @@ class UserRepository implements Contract
      * @param  bool  $withSubscription
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-	public function createUserFromRegistrationRequest(Request $request, $withSubscription = false)
-	{
+    public function createUserFromRegistrationRequest(Request $request, $withSubscription = false)
+    {
         return DB::transaction(function () use ($request, $withSubscription) {
             $user = $this->createNewUser($request, $withSubscription);
 
@@ -47,7 +47,7 @@ class UserRepository implements Contract
 
             return $user;
         });
-	}
+    }
 
     /**
      * Create a new user of the application.
