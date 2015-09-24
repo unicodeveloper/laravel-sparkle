@@ -58,14 +58,7 @@ class Plan implements JsonSerializable
     public $features = [];
 
     /**
-     * The attributes of a plan help determine functional differences between plans.
-     *
-     * E.g.
-     * ```
-     *  [
-     *     'limitProjects' => 10
-     *  ]
-     * ```
+     * The user-defined attributes of the plan.
      *
      * @var array
      */
