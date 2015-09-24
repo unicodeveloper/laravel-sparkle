@@ -79,7 +79,7 @@ class ProfileController extends Controller
         } else {
             $this->validate($request, [
                 'name' => 'required|max:255',
-                'email' => 'required|email|unique:users,email,'.Auth::id()
+                'email' => 'required|email|unique:users,email,'.Auth::id(),
             ]);
         }
     }

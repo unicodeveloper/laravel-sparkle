@@ -41,7 +41,7 @@ class Authy implements Provider
         ])->getBody(), true);
 
         $user->setTwoFactorAuthProviderOptions([
-            'id' => $response['user']['id']
+            'id' => $response['user']['id'],
         ]);
     }
 

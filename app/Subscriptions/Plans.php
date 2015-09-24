@@ -87,7 +87,7 @@ class Plans implements Countable, IteratorAggregate, JsonSerializable
      */
     public function paid()
     {
-        return new Plans(array_values(array_filter($this->plans, function ($plan) {
+        return new self(array_values(array_filter($this->plans, function ($plan) {
             return $plan->price > 0;
         })));
     }
@@ -99,7 +99,7 @@ class Plans implements Countable, IteratorAggregate, JsonSerializable
      */
     public function tier($tier)
     {
-        return new Plans(array_values(array_filter($this->plans, function ($plan) use ($tier) {
+        return new self(array_values(array_filter($this->plans, function ($plan) use ($tier) {
             return $plan->tier === $tier;
         })));
     }
@@ -111,7 +111,7 @@ class Plans implements Countable, IteratorAggregate, JsonSerializable
      */
     public function monthly()
     {
-        return new Plans(array_values(array_filter($this->plans, function ($plan) {
+        return new self(array_values(array_filter($this->plans, function ($plan) {
             return $plan->isMonthly();
         })));
     }
@@ -123,7 +123,7 @@ class Plans implements Countable, IteratorAggregate, JsonSerializable
      */
     public function yearly()
     {
-        return new Plans(array_values(array_filter($this->plans, function ($plan) {
+        return new self(array_values(array_filter($this->plans, function ($plan) {
             return $plan->isYearly();
         })));
     }
@@ -135,7 +135,7 @@ class Plans implements Countable, IteratorAggregate, JsonSerializable
      */
     public function active()
     {
-        return new Plans(array_values(array_filter($this->plans, function ($plan) {
+        return new self(array_values(array_filter($this->plans, function ($plan) {
             return $plan->isActive();
         })));
     }

@@ -61,7 +61,7 @@ trait CanJoinTeams
 
             return $this->currentTeam();
         } elseif (! is_null($this->current_team_id)) {
-            $currentTeam =  $this->teams->find($this->current_team_id);
+            $currentTeam = $this->teams->find($this->current_team_id);
 
             return $currentTeam ?: $this->refreshCurrentTeam();
         }

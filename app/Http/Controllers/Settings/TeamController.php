@@ -199,7 +199,7 @@ class TeamController extends Controller
             );
 
             $this->validate($request, [
-                'role' => 'required|in:'.$availableRoles
+                'role' => 'required|in:'.$availableRoles,
             ]);
         }
     }
