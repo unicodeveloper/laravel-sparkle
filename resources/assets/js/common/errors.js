@@ -1,3 +1,5 @@
+/*jshint multistr: true */
+
 /*
  * Common Error Display Component.
  */
