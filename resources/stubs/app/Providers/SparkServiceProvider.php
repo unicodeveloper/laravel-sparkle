@@ -162,8 +162,9 @@ class SparkServiceProvider extends ServiceProvider
     {
         // Spark::validateSubscriptionsWith(function (Request $request) {
         //     return [
-        //         'name' => 'required|max:255',
-        //         'email' => 'required|email|unique:users,email,'.$request->user()->id,
+        //         'plan' => 'required',
+        //         'terms' => 'required|accepted',
+        //         'stripe_token' => 'required',
         //     ];
         // });
     }
