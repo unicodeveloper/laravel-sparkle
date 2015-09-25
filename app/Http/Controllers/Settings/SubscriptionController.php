@@ -50,11 +50,7 @@ class SubscriptionController extends Controller
      */
     public function subscribe(Request $request)
     {
-        $this->validate($request, [
-            'plan' => 'required',
-            'terms' => 'required|accepted',
-            'stripe_token' => 'required',
-        ]);
+        $this->validateSubscription($request);
 
         $plan = Spark::plans()->find($request->plan);
 
@@ -70,6 +66,27 @@ class SubscriptionController extends Controller
         event(new Subscribed(Auth::user()));
 
         return $this->users->getCurrentUser();
+    }
+
+    /**
+     * Validate the incoming request to subscribe the user to a plan.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateSubscription(Request $request)
+    {
+        if (Spark::$validateSubscriptionsWith) {
+            $this->callCustomValidator(
+                Spark::$validateSubscriptionsWith, $request
+            );
+        } else {
+            $this->validate($request, [
+                'plan' => 'required',
+                'terms' => 'required|accepted',
+                'stripe_token' => 'required',
+            ]);
+        }
     }
 
     /**

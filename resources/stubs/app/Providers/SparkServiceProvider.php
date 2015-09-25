@@ -65,6 +65,14 @@ class SparkServiceProvider extends ServiceProvider
         //     ];
         // });
 
+        // Spark::validateSubscriptionsWith(function (Request $request) {
+        //     return [
+        //         'plan' => 'required',
+        //         'terms' => 'required|accepted',
+        //         'stripe_token' => 'required',
+        //     ];
+        // });
+
         // Spark::createUsersWith(function (Request $request) {
         //     // Return New User Instance...
         // });

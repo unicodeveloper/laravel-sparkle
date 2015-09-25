@@ -53,6 +53,13 @@ class Spark
      */
     public static $validateRegistrationsWith;
 
+    /*
+     * The callback used to retrieve the user subscription validator.
+     *
+     * @var callable|null
+     */
+    public static $validateSubscriptionsWith;
+
     /**
      * The callback used to create the new users.
      *
@@ -342,6 +349,17 @@ class Spark
     public static function validateRegistrationsWith($callback)
     {
         static::$validateRegistrationsWith = $callback;
+    }
+
+    /**
+     * Set a callback to be used to retrieve the subscription validator.
+     *
+     * @param  callable|string  $callback
+     * @return void
+     */
+    public static function validateSubscriptionsWith($callback)
+    {
+        static::$validateSubscriptionsWith = $callback;
     }
 
     /**
