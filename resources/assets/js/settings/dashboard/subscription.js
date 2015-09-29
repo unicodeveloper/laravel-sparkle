@@ -46,7 +46,7 @@ Vue.component('spark-settings-subscription-screen', {
             plans: [],
 
             subscribeForm: {
-                plan: '', terms: false, strip_token: null, errors: [], subscribing: false
+                plan: '', terms: false, stripe_token: null, errors: [], subscribing: false
             },
 
             cardForm: {
