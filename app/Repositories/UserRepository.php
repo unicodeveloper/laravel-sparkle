@@ -96,7 +96,6 @@ class UserRepository implements Contract
 
         $subscription = $user->subscription($plan->id);
 
-        // Only allow trials for new Stripe customers
         if ($plan->hasTrial() && $stripeCustomer === null) {
             $subscription->trialFor(Carbon::now()->addDays($plan->trialDays));
         }
