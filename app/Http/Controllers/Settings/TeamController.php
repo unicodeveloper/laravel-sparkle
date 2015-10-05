@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Spark\Http\Controllers\Controller;
-use Laravel\Spark\Events\Team\Created;
+use Laravel\Spark\Events\Team\Created as TeamCreated;
 use Laravel\Spark\Events\Team\Deleting as DeletingTeam;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Laravel\Spark\Contracts\Repositories\TeamRepository;
@@ -61,7 +61,7 @@ class TeamController extends Controller
             $user, ['name' => $request->name]
         );
 
-        event(new Created($team));
+        event(new TeamCreated($team));
 
         return $this->teams->getAllTeamsForUser($user);
     }

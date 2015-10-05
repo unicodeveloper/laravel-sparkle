@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Subscriptions\Plan;
 use Laravel\Spark\Events\User\Registered;
 use Laravel\Spark\Events\User\Subscribed;
-use Laravel\Spark\Events\Team\Created;
 use Laravel\Spark\InteractsWithSparkHooks;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Laravel\Spark\Events\Team\Created as TeamCreated;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Laravel\Spark\Contracts\Repositories\UserRepository;
 use Laravel\Spark\Contracts\Repositories\TeamRepository;
@@ -202,7 +202,8 @@ class AuthController extends Controller
 
         if ($request->team_name) {
             $team = $this->teams->create($user, ['name' => $request->team_name]);
-            event(new Created($team));
+
+            event(new TeamCreated($team));
         }
 
         if ($request->invitation) {
