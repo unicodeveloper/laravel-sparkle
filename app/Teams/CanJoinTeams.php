@@ -34,7 +34,7 @@ trait CanJoinTeams
      */
     public function joinTeamById($teamId)
     {
-        $this->teams()->attach([$teamId]);
+        $this->teams()->attach([$teamId], ['role' => Spark::defaultRole()]);
 
         $this->currentTeam();
     }
