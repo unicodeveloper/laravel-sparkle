@@ -533,6 +533,16 @@ class Spark
     }
 
     /**
+     * Get the product name for the application.
+     *
+     * @return string
+     */
+    public static function product()
+    {
+        return static::generateInvoicesWith()['product'];
+    }
+
+    /**
      * Get or set the Cashier invoice's meta attributes.
      *
      * @param  array  $invoiceData
