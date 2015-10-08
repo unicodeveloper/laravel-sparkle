@@ -32,7 +32,7 @@ Vue.component('spark-team-settings-membership-screen', {
          * Determine if all necessary data has been loaded.
          */
         everythingIsLoaded: function () {
-            return this.user && this.team;
+            return this.user && this.team && this.roles.length > 0;
         },
 
 
