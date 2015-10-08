@@ -16,13 +16,15 @@ class TeamRepository implements Contract
      */
     public function create($user, array $data)
     {
-        $team = $user->teams()->create(
-            ['name' => $data['name']], ['role' => 'owner']
-        );
+        $teamClass = Spark::model('teams', Team::class);
 
+        $team = new $teamClass(['name' => $data['name']]);
         $team->owner_id = $user->id;
-
         $team->save();
+
+        $team = $user->teams()->attach(
+            $team, ['role' => 'owner']
+        );
 
         return $team;
     }
