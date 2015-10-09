@@ -3,6 +3,7 @@
 namespace Laravel\Spark\Repositories;
 
 use Laravel\Spark\Spark;
+use Laravel\Spark\Teams\Team;
 use Laravel\Spark\Contracts\Repositories\TeamRepository as Contract;
 
 class TeamRepository implements Contract
@@ -16,10 +17,12 @@ class TeamRepository implements Contract
      */
     public function create($user, array $data)
     {
-        $teamClass = Spark::model('teams', Team::class);
+        $class = Spark::model('teams', Team::class);
 
-        $team = new $teamClass(['name' => $data['name']]);
+        $team = new $class(['name' => $data['name']]);
+
         $team->owner_id = $user->id;
+
         $team->save();
 
         $team = $user->teams()->attach(
