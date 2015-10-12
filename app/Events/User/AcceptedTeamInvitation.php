@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Queue\SerializesModels;
 use Laravel\Spark\Teams\Team;
 
-class AcceptTeamInvitation
+class AcceptedTeamInvitation
 {
     use SerializesModels;
 

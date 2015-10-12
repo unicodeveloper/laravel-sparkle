@@ -81,7 +81,7 @@ class InvitationController extends Controller
         $invitation->delete();
 
         $team = $user->teams()->find($teamId);
-        event(new acceptTeamInvitation($user, $team));
+        event(new AcceptedTeamInvitation($user, $team));
 
         return $this->teams->getAllTeamsForUser($user);
     }
