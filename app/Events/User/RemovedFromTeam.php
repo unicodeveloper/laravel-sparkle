@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Events\User;
 
+use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Queue\SerializesModels;
 
 class RemoveFromTeam
@@ -15,10 +16,10 @@ class RemoveFromTeam
     /**
      * Create a new event instance.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param  \Illuminate\Contracts\Auth\Access\Authorizable  $user
      * @return void
      */
-    public function __construct(Authenticatable $user, Team $team)
+    public function __construct(Authorizable $user, Team $team)
     {
         $this->user = $user;
         $this->team = $team;
