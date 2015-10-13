@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Http\Controllers\Controller;
-use Laravel\Spark\Events\User\acceptTeamInvitation;
+use Laravel\Spark\Events\User\AcceptedTeamInvitation;
 
 class InvitationController extends Controller
 {
