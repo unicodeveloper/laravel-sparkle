@@ -1,9 +1,8 @@
 /*
  * Variables...
  */
-$border-radius-base: 0;
-$brand-primary: #2B5A84;
-$btn-border-radius-base: 0;
+$body-bg: #f9f9f9;
+$brand-primary: #4f86b5;
 $btn-font-weight: 300;
 $font-family-sans-serif: "Lato", Helvetica, Arial, sans-serif !default;
 $font-size-base: 14px;
@@ -17,4 +16,4 @@ $navbar-height: 65px;
 /*
  * Spark Styling...
  */
-@import "vendor/laravel/spark/resources/assets/sass/spark";
+@import "spark/resources/assets/sass/spark";
