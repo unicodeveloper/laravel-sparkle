@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Teams;
 
+use Laravel\Spark\Events\User\JoinedTeam;
 use Laravel\Spark\Spark;
 
 trait CanJoinTeams
@@ -37,6 +38,9 @@ trait CanJoinTeams
         $this->teams()->attach([$teamId], ['role' => Spark::defaultRole()]);
 
         $this->currentTeam();
+
+        $team = $this->teams()->find($teamId);
+        event(new JoinedTeam($this, $team));
     }
 
     /**

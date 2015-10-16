@@ -3,16 +3,18 @@
 namespace Laravel\Spark\Http\Controllers\Settings;
 
 use Exception;
-use Laravel\Spark\Spark;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Spark\Http\Controllers\Controller;
+use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Events\Team\Created as TeamCreated;
 use Laravel\Spark\Events\Team\Deleting as DeletingTeam;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Laravel\Spark\Contracts\Repositories\TeamRepository;
-use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Laravel\Spark\Events\User\LeftTeam;
+use Laravel\Spark\Events\User\RemovedFromTeam;
+use Laravel\Spark\Http\Controllers\Controller;
+use Laravel\Spark\Spark;
 
 class TeamController extends Controller
 {
@@ -224,6 +226,8 @@ class TeamController extends Controller
 
         $team->removeUserById($userId);
 
+        event(new RemovedFromTeam($user, $team));
+
         return $this->teams->getTeam($user, $teamId);
     }
 
@@ -243,6 +247,8 @@ class TeamController extends Controller
                     ->where('id', $teamId)->firstOrFail();
 
         $team->removeUserById($user->id);
+
+        event(new LeftTeam($user, $team));
 
         return $this->teams->getAllTeamsForUser($user);
     }
