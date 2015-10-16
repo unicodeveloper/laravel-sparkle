@@ -3,12 +3,11 @@
 namespace Laravel\Spark\Http\Controllers\Settings;
 
 use Exception;
-use Illuminate\Contracts\Validation\Validator as ValidatorContract;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Http\Controllers\Controller;
-use Laravel\Spark\Events\User\AcceptedTeamInvitation;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Laravel\Spark\Contracts\Repositories\TeamRepository;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
 class InvitationController extends Controller
 {
@@ -75,13 +74,9 @@ class InvitationController extends Controller
 
         $invitation = $user->invitations()->findOrFail($inviteId);
 
-        $teamId = $invitation->team_id;
-        $user->joinTeamById($teamId);
+        $user->joinTeamById($invitation->team_id);
 
         $invitation->delete();
-
-        $team = $user->teams()->find($teamId);
-        event(new AcceptedTeamInvitation($user, $team));
 
         return $this->teams->getAllTeamsForUser($user);
     }

@@ -2,8 +2,8 @@
 
 namespace Laravel\Spark\Teams;
 
-use Laravel\Spark\Events\User\JoinedTeam;
 use Laravel\Spark\Spark;
+use Laravel\Spark\Events\User\JoinedTeam;
 
 trait CanJoinTeams
 {
@@ -39,8 +39,7 @@ trait CanJoinTeams
 
         $this->currentTeam();
 
-        $team = $this->teams()->find($teamId);
-        event(new JoinedTeam($this, $team));
+        event(new JoinedTeam($this, $this->teams()->find($teamId)));
     }
 
     /**

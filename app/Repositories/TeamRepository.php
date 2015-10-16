@@ -98,7 +98,7 @@ class TeamRepository implements Contract
         $invitation = (new $inviteModel)->where('token', $invitationId)->first();
 
         if ($invitation) {
-            $invitation->team->users()->attach([$user->id], ['role' => Spark::defaultRole()]);
+            $user->joinTeamById($invitation->team->id);
 
             $user->switchToTeam($invitation->team);
 

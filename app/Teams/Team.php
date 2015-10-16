@@ -5,6 +5,7 @@ namespace Laravel\Spark\Teams;
 use Laravel\Spark\Spark;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Spark\Events\User\RemovedFromTeam;
 
 class Team extends Model
 {
@@ -99,5 +100,7 @@ class Team extends Model
         if ($removedUser) {
             $removedUser->refreshCurrentTeam();
         }
+
+        event(new RemovedFromTeam($removedUser, $this));
     }
 }
