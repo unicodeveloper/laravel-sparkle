@@ -12,6 +12,7 @@ use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Events\Team\Created as TeamCreated;
 use Laravel\Spark\Events\Team\Deleting as DeletingTeam;
 use Laravel\Spark\Events\User\LeftTeam;
+use Laravel\Spark\Events\User\RemovedFromTeam;
 use Laravel\Spark\Http\Controllers\Controller;
 use Laravel\Spark\Spark;
 

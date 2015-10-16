@@ -4,8 +4,9 @@ namespace Laravel\Spark\Events\User;
 
 use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Queue\SerializesModels;
+use Laravel\Spark\Teams\Team;
 
-class RemoveFromTeam
+class RemovedFromTeam
 {
     use SerializesModels;
 
