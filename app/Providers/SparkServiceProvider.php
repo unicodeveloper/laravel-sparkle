@@ -65,7 +65,7 @@ class SparkServiceProvider extends ServiceProvider
                 SPARK_PATH.'/resources/views/emails' => base_path('resources/views/vendor/spark/emails'),
                 SPARK_PATH.'/resources/views/welcome.blade.php' => base_path('resources/views/vendor/spark/welcome.blade.php'),
                 SPARK_PATH.'/resources/views/nav/guest.blade.php' => base_path('resources/views/vendor/spark/nav/guest.blade.php'),
-                SPARK_PATH.'/resources/views/layouts/app.blade.php' => base_path('resources/views/vendor/spark/layouts/app.blade.php'),
+                SPARK_PATH.'/resources/views/layouts/spark.blade.php' => base_path('resources/views/vendor/spark/layouts/spark.blade.php'),
                 SPARK_PATH.'/resources/views/common/footer.blade.php' => base_path('resources/views/vendor/spark/common/footer.blade.php'),
                 SPARK_PATH.'/resources/views/nav/authenticated.blade.php' => base_path('resources/views/vendor/spark/nav/authenticated.blade.php'),
                 SPARK_PATH.'/resources/views/layouts/common/head.blade.php' => base_path('resources/views/vendor/spark/layouts/common/head.blade.php'),
