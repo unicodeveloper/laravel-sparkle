@@ -90,7 +90,7 @@ Vue.component('spark-team-settings-membership-screen', {
             this.sendInviteForm.sent = false;
             this.sendInviteForm.sending = true;
 
-            this.$http.post('/settings/teams/' + TEAM_ID + '/invitations', this.sendInviteForm)
+            this.$http.post('/settings/teams/' + this.team.id + '/invitations', this.sendInviteForm)
                 .success(function (team) {
                     this.$dispatch('teamUpdated', team);
 
@@ -113,7 +113,7 @@ Vue.component('spark-team-settings-membership-screen', {
                 return i.id === invite.id;
             });
 
-            this.$http.delete('/settings/teams/' + TEAM_ID + '/invitations/' + invite.id)
+            this.$http.delete('/settings/teams/' + this.team.id + '/invitations/' + invite.id)
                 .success(function (team) {
                     this.$dispatch('teamUpdated', team);
                 });
@@ -136,7 +136,7 @@ Vue.component('spark-team-settings-membership-screen', {
                 return u.id == teamMember.id;
             });
 
-            this.$http.delete('/settings/teams/' + TEAM_ID + '/members/' + teamMember.id)
+            this.$http.delete('/settings/teams/' + this.team.id + '/members/' + teamMember.id)
                 .success(function (team) {
                     this.$dispatch('teamUpdated', team);
                 });
@@ -149,7 +149,7 @@ Vue.component('spark-team-settings-membership-screen', {
         leaveTeam: function () {
             this.leavingTeam = true;
 
-            this.$http.delete('/settings/teams/' + TEAM_ID + '/membership')
+            this.$http.delete('/settings/teams/' + this.team.id + '/membership')
                 .success(function () {
                     window.location = '/settings?tab=teams';
                 });
