@@ -15,4 +15,4 @@ Thanks!
 
 <br>
 
-{{ Spark::generateInvoicesWith()['product'] }}
+{{ Spark::product() }}
