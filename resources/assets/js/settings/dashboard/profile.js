@@ -14,13 +14,10 @@ Vue.component('spark-settings-profile-screen', {
         return {
             user: null,
 
-            updateProfileForm: {
+            updateProfileForm: new SparkForm({
                 name: '',
                 email: '',
-                errors: [],
-                updating: false,
-                updated: false
-            }
+            })
         };
     },
 
@@ -53,20 +50,11 @@ Vue.component('spark-settings-profile-screen', {
          * Update the user's profile information.
          */
         updateProfile: function () {
-            this.updateProfileForm.errors = [];
-            this.updateProfileForm.updated = false;
-            this.updateProfileForm.updating = true;
+            var self = this;
 
-            this.$http.put('/settings/user', this.updateProfileForm)
-                .success(function (user) {
-                    this.updateProfileForm.updated = true;
-                    this.updateProfileForm.updating = false;
-
-                    this.$dispatch('updateUser');
-                })
-                .error(function (errors) {
-                    Spark.setErrorsOnForm(this.updateProfileForm, errors);
-                    this.updateProfileForm.updating = false;
+            Spark.put('/settings/user', this.updateProfileForm)
+                .then(function () {
+                    self.$dispatch('updateUser');
                 });
         }
     }

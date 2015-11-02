@@ -15,7 +15,7 @@
 	</div>
 
 	<div class="panel-body">
-		<spark-errors form="@{{cardForm}}"></spark-errors>
+		<spark-errors :form="cardForm"></spark-errors>
 
 		<form class="form-horizontal" role="form">
 			<div class="form-group">

@@ -53,19 +53,18 @@ Vue.component('spark-settings-subscription-screen', {
                 number: '', cvc: '', month: '', year: '', zip: '', errors: []
             },
 
-            changePlanForm: {
-                plan: '', errors: [], changing: false
-            },
+            changePlanForm: new SparkForm({
+                plan: ''
+            }),
 
             updateCardForm: settingsSubscriptionScreenForms.updateCard(),
 
-            extraBillingInfoForm: {
-                text: '', errors: [], updating: false, updated: false
-            },
+            extraBillingInfoForm: new SparkForm({
+                text: ''
+            }),
 
-            resumeSubscriptionForm: { errors: [], resuming: false },
-
-            cancelSubscriptionForm: { errors: [], cancelling: false }
+            resumeSubscriptionForm: new SparkForm({}),
+            cancelSubscriptionForm: new SparkForm({})
         };
     },
 
@@ -391,29 +390,20 @@ Vue.component('spark-settings-subscription-screen', {
          * Subscribe the user to another subscription plan.
          */
         changePlan: function() {
-            this.changePlanForm.errors = [];
-            this.changePlanForm.changing = true;
+            var self = this;
 
-            this.$http.put('settings/user/plan', { plan: this.changePlanForm.plan })
-                .success(function (user) {
-                    this.user = user;
-
-                    this.$dispatch('updateUser');
+            Spark.put('/settings/user/plan', this.changePlanForm)
+                .then(function (user) {
+                    self.$dispatch('updateUser');
 
                     /*
                      * We need to re-initialize the tooltips on the screen because
                      * some of the plans may not have been displayed yet if the
                      * users just "switched" plans to another available plan.
                      */
+                    self.initializeTooltips();
+
                     $('#modal-change-plan').modal('hide');
-
-                    this.initializeTooltips();
-
-                    this.changePlanForm.changing = false;
-                })
-                .error(function (errors) {
-                    this.changePlanForm.changing = false;
-                    Spark.setErrorsOnForm(this.changePlanForm, errors);
                 });
         },
 
@@ -475,19 +465,7 @@ Vue.component('spark-settings-subscription-screen', {
          * Update the user's extra billing information.
          */
         updateExtraBillingInfo: function () {
-            this.extraBillingInfoForm.errors = [];
-            this.extraBillingInfoForm.updated = false;
-            this.extraBillingInfoForm.updating = true;
-
-            this.$http.put('settings/user/vat', this.extraBillingInfoForm)
-                .success(function () {
-                    this.extraBillingInfoForm.updated = true;
-                    this.extraBillingInfoForm.updating = false;
-                })
-                .error(function (errors) {
-                    Spark.setErrorsOnForm(this.extraBillingInfoForm, errors);
-                    this.extraBillingInfoForm.updating = false;
-                });
+            Spark.put('/settings/user/vat', this.extraBillingInfoForm);
         },
 
 
@@ -503,24 +481,17 @@ Vue.component('spark-settings-subscription-screen', {
          * Cancel the user's subscription with Stripe.
          */
         cancelSubscription: function () {
-            this.cancelSubscriptionForm.errors = [];
-            this.cancelSubscriptionForm.cancelling = true;
+            var self = this;
 
-            this.$http.delete('settings/user/plan')
-                .success(function (user) {
-                    var self = this;
-
-                    this.user = user;
+            Spark.delete('/settings/user/plan', this.cancelSubscriptionForm)
+                .then(function (user) {
+                    self.user = user;
 
                     $('#modal-cancel-subscription').modal('hide');
 
                     setTimeout(function () {
                         self.cancelSubscriptionForm.cancelling = false;
                     }, 500);
-                })
-                .error(function (errors) {
-                    this.cancelSubscriptionForm.cancelling = false;
-                    Spark.setErrorsOnForm(this.cancelSubscriptionForm, errors);
                 });
         },
 
@@ -529,17 +500,11 @@ Vue.component('spark-settings-subscription-screen', {
          * Resume the user's subscription on Stripe.
          */
         resumeSubscription: function () {
-            this.resumeSubscriptionForm.errors = [];
-            this.resumeSubscriptionForm.resuming = true;
+            var self = this;
 
-            this.$http.post('settings/user/plan/resume')
-                .success(function (user) {
-                    this.user = user;
-                    this.resumeSubscriptionForm.resuming = false;
-                })
-                .error(function (errors) {
-                    this.resumeSubscriptionForm.resuming = false;
-                    Spark.setErrorsOnForm(this.resumeSubscriptionForm, errors);
+            Spark.post('/settings/user/plan/resume', this.resumeSubscriptionForm)
+                .then(function (user) {
+                    self.user = user;
                 });
         },
 

@@ -5,7 +5,7 @@
 		<div class="panel-heading">Create Team</div>
 
 		<div class="panel-body">
-			<spark-errors form="@{{ createTeamForm }}"></spark-errors>
+			<spark-errors :form="createTeamForm"></spark-errors>
 
 			<form method="POST" class="form-horizontal" role="form">
 				<div class="form-group">
@@ -17,8 +17,8 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click.prevent="createTeam" :disabled="createTeamForm.creating">
-							<span v-if="createTeamForm.creating">
+						<button type="submit" class="btn btn-primary" @click.prevent="createTeam" :disabled="createTeamForm.busy">
+							<span v-if="createTeamForm.busy">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Creating
 							</span>
 
@@ -147,8 +147,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-					<button type="button" class="btn btn-danger" @click.prevent="deleteTeam" :disabled="deletingTeam">
-						<span v-if="deletingTeam">
+					<button type="button" class="btn btn-danger" @click.prevent="deleteTeam" :disabled="deleteTeamForm.busy">
+						<span v-if="deleteTeamForm.busy">
 							<i class="fa fa-btn fa-spinner fa-spin"></i>Deleting
 						</span>
 

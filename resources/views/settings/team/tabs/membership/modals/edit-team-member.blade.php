@@ -8,7 +8,7 @@
 				</div>
 
 				<div class="modal-body">
-					<spark-errors form="@{{ updateTeamMemberForm }}"></spark-errors>
+					<spark-errors :form="updateTeamMemberForm"></spark-errors>
 
 					<!-- Edit Team Member Form -->
 					<form class="form-horizontal" role="form">
@@ -16,7 +16,10 @@
 							<label class="col-md-3 control-label">Role</label>
 
 							<div class="col-md-8">
-								<select class="form-control" v-model="updateTeamMemberForm.role" options="assignableRoles">
+								<select class="form-control" v-model="updateTeamMemberForm.role">
+									<option v-for="role in assignableRoles" :value="role.value">
+										@{{ role.text }}
+									</option>
 								</select>
 							</div>
 						</div>
@@ -26,8 +29,8 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-					<button type="button" class="btn btn-primary" @click.prevent="updateTeamMember" :disabled="updateTeamMemberForm.updating">
-						<span v-if="updateTeamMemberForm.updating">
+					<button type="button" class="btn btn-primary" @click.prevent="updateTeamMember" :disabled="updateTeamMemberForm.busy">
+						<span v-if="updateTeamMemberForm.busy">
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 						</span>
 

@@ -12,12 +12,9 @@ Vue.component('spark-team-settings-owner-screen', {
     		user: null,
     		team: null,
 
-    		updateTeamForm: {
-    			name: '',
-    			errors: [],
-    			updating: false,
-    			updated: false
-    		}
+    		updateTeamForm: new SparkForm({
+    			name: ''
+    		})
     	};
     },
 
@@ -51,22 +48,13 @@ Vue.component('spark-team-settings-owner-screen', {
     	 * Update the team's information.
     	 */
     	updateTeam: function () {
-    		this.updateTeamForm.errors = [];
-    		this.updateTeamForm.updated = false;
-    		this.updateTeamForm.updating = true;
+            var self = this;
 
-    		this.$http.put('/settings/teams/' + this.team.id, this.updateTeamForm)
-    			.success(function (team) {
-                    this.$dispatch('updateTeams');
-                    this.$dispatch('teamUpdated', team);
-
-    				this.updateTeamForm.updated = true;
-    				this.updateTeamForm.updating = false;
-    			})
-    			.error(function (errors) {
-                    Spark.setErrorsOnForm(this.updateTeamForm, errors);
-    				this.updateTeamForm.updating = false;
-    			});
+            Spark.put('/settings/teams/' + this.team.id, this.updateTeamForm)
+                .then(function (team) {
+                    self.$dispatch('updateTeams');
+                    self.$dispatch('teamUpdated', team);
+                });
     	}
     }
 });

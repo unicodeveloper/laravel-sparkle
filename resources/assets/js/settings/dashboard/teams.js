@@ -17,14 +17,12 @@ Vue.component('spark-settings-teams-screen', {
             invitations: [],
 
             teamToDelete: null,
-            deletingTeam: false,
 
-            createTeamForm: {
-                name: '',
-                errors: [],
-                creating: false,
-                created: false
-            }
+            createTeamForm: new SparkForm({
+                name: ''
+            }),
+
+            deleteTeamForm: new SparkForm({})
         };
     },
 
@@ -63,21 +61,18 @@ Vue.component('spark-settings-teams-screen', {
         },
 
 
+        /**
+         * Create a new team.
+         */
         createTeam: function () {
-            this.createTeamForm.errors = [];
-            this.createTeamForm.creating = true;
+            var self = this;
 
-            this.$http.post('/settings/teams', this.createTeamForm)
-                .success(function (teams) {
-                    this.$dispatch('updateUser');
-                    this.$dispatch('teamsUpdated', teams);
+            Spark.post('/settings/teams', this.createTeamForm)
+                .then(function (teams) {
+                    self.createTeamForm.name = '';
 
-                    this.createTeamForm.name = '';
-                    this.createTeamForm.creating = false;
-                })
-                .error(function (errors) {
-                    Spark.setErrorsOnForm(this.createTeamForm, errors);
-                    this.createTeamForm.creating = false;
+                    self.$dispatch('updateUser');
+                    self.$dispatch('teamsUpdated', teams);
                 });
         },
 
@@ -112,15 +107,14 @@ Vue.component('spark-settings-teams-screen', {
          * Delete the given team.
          */
         deleteTeam: function () {
-            this.deletingTeam = true;
+            var self = this;
 
-            this.$http.delete('/settings/teams/' + this.teamToDelete.id)
-                .success(function (teams) {
-                    this.deletingTeam = false;
+            Spark.delete('/settings/teams/' + this.teamToDelete.id, this.deleteTeamForm)
+                .then(function (teams) {
                     $('#modal-delete-team').modal('hide');
 
-                    this.$dispatch('updateUser');
-                    this.$dispatch('teamsUpdated', teams);
+                    self.$dispatch('updateUser');
+                    self.$dispatch('teamsUpdated', teams);
                 });
         },
 

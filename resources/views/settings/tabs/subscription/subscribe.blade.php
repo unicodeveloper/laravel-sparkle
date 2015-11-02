@@ -36,7 +36,7 @@
 		</div>
 
 		<div class="panel-body">
-			<spark-errors form="@{{ subscribeForm }}"></spark-errors>
+			<spark-errors :form="subscribeForm"></spark-errors>
 
 			<form class="form-horizontal" role="form">
 				<div class="form-group">

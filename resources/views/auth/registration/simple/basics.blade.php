@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Register</div>
 	<div class="panel-body">
-		<spark-errors form="@{{ registerForm }}"></spark-errors>
+		<spark-errors :form="registerForm"></spark-errors>
 
 		<form class="form-horizontal" role="form">
 			@if (Spark::usingTeams())

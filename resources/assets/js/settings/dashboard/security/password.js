@@ -14,14 +14,11 @@ Vue.component('spark-settings-security-password-screen', {
         return {
             user: null,
 
-            updatePasswordForm: {
+            updatePasswordForm: new SparkForm({
                 old_password: '',
                 password: '',
-                password_confirmation: '',
-                errors: [],
-                updating: false,
-                updated: false
-            }
+                password_confirmation: ''
+            })
         };
     },
 
@@ -43,22 +40,13 @@ Vue.component('spark-settings-security-password-screen', {
          * Update the user's password.
          */
         updatePassword: function () {
-            this.updatePasswordForm.errors = [];
-            this.updatePasswordForm.updated = false;
-            this.updatePasswordForm.updating = true;
+            var self = this;
 
-            this.$http.put('/settings/user/password', this.updatePasswordForm)
-                .success(function () {
-                    this.updatePasswordForm.updated = true;
-                    this.updatePasswordForm.updating = false;
-
-                    this.updatePasswordForm.old_password = '';
-                    this.updatePasswordForm.password = '';
-                    this.updatePasswordForm.password_confirmation = '';
-                })
-                .error(function (errors) {
-                    Spark.setErrorsOnForm(this.updatePasswordForm, errors);
-                    this.updatePasswordForm.updating = false;
+            Spark.put('/settings/user/password', this.updatePasswordForm)
+                .then(function () {
+                    self.updatePasswordForm.old_password = '';
+                    self.updatePasswordForm.password = '';
+                    self.updatePasswordForm.password_confirmation = '';
                 });
         }
     }

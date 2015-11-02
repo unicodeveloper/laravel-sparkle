@@ -17,12 +17,9 @@ Vue.component('spark-team-settings-membership-screen', {
             roles: [],
             leavingTeam: false,
 
-            sendInviteForm: {
-                email: '',
-                errors: [],
-                sending: false,
-                sent: false
-            }
+            sendInviteForm: new SparkForm({
+                email: ''
+            })
         };
     },
 
@@ -86,21 +83,13 @@ Vue.component('spark-team-settings-membership-screen', {
          * Send an invitation to a new user.
          */
         sendInvite: function () {
-            this.sendInviteForm.errors = [];
-            this.sendInviteForm.sent = false;
-            this.sendInviteForm.sending = true;
+            var self = this;
 
-            this.$http.post('/settings/teams/' + this.team.id + '/invitations', this.sendInviteForm)
-                .success(function (team) {
-                    this.$dispatch('teamUpdated', team);
+            Spark.post('/settings/teams/' + this.team.id + '/invitations', this.sendInviteForm)
+                .then(function (team) {
+                    self.$dispatch('teamUpdated', team);
 
-                    this.sendInviteForm.email = '';
-                    this.sendInviteForm.sent = true;
-                    this.sendInviteForm.sending = false;
-                })
-                .error(function (errors) {
-                    this.sendInviteForm.sending = false;
-                    Spark.setErrorsOnForm(this.sendInviteForm, errors);
+                    self.sendInviteForm.email = '';
                 });
         },
 

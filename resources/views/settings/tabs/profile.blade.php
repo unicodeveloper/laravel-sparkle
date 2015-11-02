@@ -3,9 +3,9 @@
 		<div class="panel-heading">Update Profile</div>
 
 		<div class="panel-body">
-			<spark-errors form="@{{ updateProfileForm }}"></spark-errors>
+			<spark-errors :form="updateProfileForm"></spark-errors>
 
-			<div class="alert alert-success" v-if="updateProfileForm.updated">
+			<div class="alert alert-success" v-if="updateProfileForm.successful">
 				<strong>Great!</strong> Your profile was successfully updated.
 			</div>
 
@@ -26,8 +26,8 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click.prevent="updateProfile" :disabled="updateProfileForm.updating">
-							<span v-if="updateProfileForm.updating">
+						<button type="submit" class="btn btn-primary" @click.prevent="updateProfile" :disabled="updateProfileForm.busy">
+							<span v-if="updateProfileForm.busy">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 							</span>
 

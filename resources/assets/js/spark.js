@@ -4,6 +4,11 @@
 require('./core/components');
 
 /**
+ * Load the Spark form utilities.
+ */
+require('./core/form-utils');
+
+/**
  * Export the Spark application.
  */
 module.exports = {

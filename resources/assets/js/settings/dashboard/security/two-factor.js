@@ -14,17 +14,13 @@ Vue.component('spark-settings-security-two-factor-screen', {
         return {
             user: null,
 
-            twoFactorForm: {
+            twoFactorForm: new SparkForm({
                 country_code: '',
                 phone_number: '',
-                errors: [],
-                enabling: false,
                 enabled: false
-            },
+            }),
 
-            disableTwoFactorForm: {
-                disabling: false,
-            }
+            disableTwoFactorForm: new SparkForm({})
         };
     },
 
@@ -49,22 +45,13 @@ Vue.component('spark-settings-security-two-factor-screen', {
          * Enable two-factor authentication for the user.
          */
         enableTwoFactorAuth: function () {
-            this.twoFactorForm.errors = [];
-            this.twoFactorForm.enabling = true;
-            this.twoFactorForm.enabled = false;
+            var self = this;
 
-            this.$http.post('/settings/user/two-factor', this.twoFactorForm)
-                .success(function (user) {
-                    this.user = user;
+            Spark.post('/settings/user/two-factor', this.twoFactorForm)
+                .then(function () {
+                    self.$dispatch('updateUser');
 
-                    this.$dispatch('updateUser');
-
-                    this.twoFactorForm.enabled = true;
-                    this.twoFactorForm.enabling = false;
-                })
-                .error(function (errors) {
-                    this.twoFactorForm.errors = errors;
-                    this.twoFactorForm.enabling = false;
+                    self.twoFactorForm.enabled = true;
                 });
         },
 
@@ -73,16 +60,13 @@ Vue.component('spark-settings-security-two-factor-screen', {
          * Disable two-factor authentication for the user.
          */
         disableTwoFactorAuth: function () {
+            var self = this;
+
             this.twoFactorForm.enabled = false;
-            this.disableTwoFactorForm.disabling = true;
 
-            this.$http.delete('/settings/user/two-factor')
-                .success(function (user) {
-                    this.user = user;
-
-                    this.$dispatch('updateUser');
-
-                    this.disableTwoFactorForm.disabling = false;
+            Spark.delete('/settings/user/two-factor', this.disableTwoFactorForm)
+                .then(function () {
+                    self.$dispatch('updateUser');
                 });
         }
     }

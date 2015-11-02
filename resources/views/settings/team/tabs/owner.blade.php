@@ -3,9 +3,9 @@
 		<div class="panel-heading">The Basics</div>
 
 		<div class="panel-body">
-			<spark-errors form="@{{ updateTeamForm }}"></spark-errors>
+			<spark-errors :form="updateTeamForm"></spark-errors>
 
-			<div class="alert alert-success" v-if="updateTeamForm.updated">
+			<div class="alert alert-success" v-if="updateTeamForm.successful">
 				<strong>Great!</strong> Your team was successfully updated.
 			</div>
 
@@ -19,8 +19,8 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click.prevent="updateTeam" :disabled="updateTeamForm.updating">
-							<span v-if="updateTeamForm.updating">
+						<button type="submit" class="btn btn-primary" @click.prevent="updateTeam" :disabled="updateTeamForm.busy">
+							<span v-if="updateTeamForm.busy">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 							</span>
 

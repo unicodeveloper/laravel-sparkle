@@ -8,9 +8,9 @@
 
 				<div class="panel-body">
 					<form method="POST" class="form-horizontal" role="form">
-						<spark-errors form="@{{ sendInviteForm }}"></spark-errors>
+						<spark-errors :form="sendInviteForm"></spark-errors>
 
-						<div class="alert alert-success" v-if="sendInviteForm.sent">
+						<div class="alert alert-success" v-if="sendInviteForm.successful">
 							<strong>Done!</strong> The invitation has been sent.
 						</div>
 
@@ -23,8 +23,8 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
-								<button type="submit" class="btn btn-primary" @click.prevent="sendInvite" :disabled="sendInviteForm.sending">
-									<span v-if="sendInviteForm.sending">
+								<button type="submit" class="btn btn-primary" @click.prevent="sendInvite" :disabled="sendInviteForm.busy">
+									<span v-if="sendInviteForm.busy">
 										<i class="fa fa-btn fa-spinner fa-spin"></i> Sending
 									</span>
 

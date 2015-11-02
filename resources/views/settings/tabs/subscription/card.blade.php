@@ -2,7 +2,7 @@
 	<div class="panel-heading">Update Card</div>
 
 	<div class="panel-body">
-		<spark-errors form="@{{ updateCardForm }}"></spark-errors>
+		<spark-errors :form="updateCardForm"></spark-errors>
 
 		<div class="alert alert-success" v-if="updateCardForm.updated">
 			<strong>Done!</strong> Your card has been updated.

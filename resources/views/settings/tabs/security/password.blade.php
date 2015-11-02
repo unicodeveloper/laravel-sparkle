@@ -3,9 +3,9 @@
 		<div class="panel-heading">Update Password</div>
 
 		<div class="panel-body">
-			<spark-errors form="@{{ updatePasswordForm }}"></spark-errors>
+			<spark-errors :form="updatePasswordForm"></spark-errors>
 
-			<div class="alert alert-success" v-if="updatePasswordForm.updated">
+			<div class="alert alert-success" v-if="updatePasswordForm.successful">
 				<strong>Great!</strong> Your password was successfully updated.
 			</div>
 
@@ -33,8 +33,8 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click.prevent="updatePassword">
-							<span v-if="updatePasswordForm.updating">
+						<button type="submit" class="btn btn-primary" @click.prevent="updatePassword" :disabled="updatePasswordForm.busy">
+							<span v-if="updatePasswordForm.busy">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 							</span>
 

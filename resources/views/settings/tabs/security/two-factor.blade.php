@@ -11,7 +11,7 @@
 						<a href="https://authy.com" target="_blank">Authy</a> application on your phone.
 					</div>
 
-					<spark-errors form="@{{ twoFactorForm }}"></spark-errors>
+					<spark-errors :form="twoFactorForm"></spark-errors>
 
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
@@ -30,8 +30,8 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
-								<button type="submit" class="btn btn-primary" @click.prevent="enableTwoFactorAuth" :disabled="twoFactorForm.updating">
-									<span v-if="twoFactorForm.enabling">
+								<button type="submit" class="btn btn-primary" @click.prevent="enableTwoFactorAuth" :disabled="twoFactorForm.busy">
+									<span v-if="twoFactorForm.busy">
 										<i class="fa fa-btn fa-spinner fa-spin"></i> Enabling
 									</span>
 
@@ -60,8 +60,8 @@
 					</div>
 
 					<form role="form">
-						<button type="submit" class="btn btn-danger" @click.prevent="disableTwoFactorAuth" :disabled="disableTwoFactorForm.disabling">
-							<span v-if="disableTwoFactorForm.disabling">
+						<button type="submit" class="btn btn-danger" @click.prevent="disableTwoFactorAuth" :disabled="disableTwoFactorForm.busy">
+							<span v-if="disableTwoFactorForm.busy">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Disabling
 							</span>
 

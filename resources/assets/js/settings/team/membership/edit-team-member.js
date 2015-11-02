@@ -10,12 +10,9 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
 
             editingTeamMember: null,
 
-            updateTeamMemberForm: {
-                role: '',
-                errors: [],
-                updating: false,
-                updated: false
-            }
+            updateTeamMemberForm: new SparkForm({
+                role: ''
+            })
 		};
 	},
 
@@ -83,22 +80,13 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
          * Edit a given team member.
          */
         updateTeamMember: function () {
-            this.updateTeamMemberForm.errors = [];
-            this.updateTeamMemberForm.updating = true;
-            this.updateTeamMemberForm.updated = false;
+            var self = this;
 
-            this.$http.put('/settings/teams/' + this.team.id + '/members/' + this.editingTeamMember.id, this.updateTeamMemberForm)
-                .success(function (team) {
-                    this.$dispatch('teamUpdated', team);
-
-                    this.updateTeamMemberForm.updated = true;
-                    this.updateTeamMemberForm.updating = false;
+            Spark.put('/settings/teams/' + this.team.id + '/members/' + this.editingTeamMember.id, this.updateTeamMemberForm)
+                .then(function (team) {
+                    self.$dispatch('teamUpdated', team);
 
                     $('#modal-edit-team-member').modal('hide');
-                })
-                .error(function (errors) {
-                    this.updateTeamMemberForm.errors = errors;
-                    this.updateTeamMemberForm.updating = false;
                 });
         }
 	}
