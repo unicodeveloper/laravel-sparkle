@@ -6,12 +6,12 @@ Hi!
 
 <br><br>
 
-Since you already have an account, simply accept the invitation from your
+Since you already have an account, you may accept the invitation from your
 account settings screen.
 
 <br><br>
 
-See you soon,
+See you soon!
 
 <br>
 

@@ -3,7 +3,7 @@ Hi!
 <br><br>
 
 {{ $invitation->team->owner->name }} has invited you to join their team! If you do not already have an account,
-click the following link to get started:
+you may click the following link to get started:
 
 <br><br>
 
@@ -11,6 +11,8 @@ click the following link to get started:
 
 <br><br>
 
-See you soon,
+See you soon!
+
 <br>
+
 {{ Spark::company() }}
