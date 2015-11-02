@@ -15,7 +15,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-				<button type="button" class="btn btn-danger" @click="cancelSubscription" :disabled="cancelSubscriptionForm.cancelling">
+				<button type="button" class="btn btn-danger" @click.prevent="cancelSubscription" :disabled="cancelSubscriptionForm.cancelling">
 					<span v-if=" ! cancelSubscriptionForm.cancelling">
 						<i class="fa fa-btn fa-times"></i>Cancel Subscription
 					</span>

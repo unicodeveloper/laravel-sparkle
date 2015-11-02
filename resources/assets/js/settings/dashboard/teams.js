@@ -59,9 +59,7 @@ Vue.component('spark-settings-teams-screen', {
         },
 
 
-        createTeam: function (e) {
-            e.preventDefault();
-
+        createTeam: function () {
             this.createTeamForm.errors = [];
             this.createTeamForm.creating = true;
 

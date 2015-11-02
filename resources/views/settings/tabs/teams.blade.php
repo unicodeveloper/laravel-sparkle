@@ -17,7 +17,7 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click="createTeam" :disabled="createTeamForm.creating">
+						<button type="submit" class="btn btn-primary" @click.prevent="createTeam" :disabled="createTeamForm.creating">
 							<span v-if="createTeamForm.creating">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Creating
 							</span>
@@ -72,13 +72,13 @@
 						</td>
 
 						<td>
-							<button class="btn btn-warning" @click="leaveTeam(team)" v-if=" ! userOwns(team)">
+							<button class="btn btn-warning" @click.prevent="leaveTeam(team)" v-if=" ! userOwns(team)">
 								<i class="fa fa-btn fa-sign-out"></i>Leave
 							</button>
 						</td>
 
 						<td>
-							<button class="btn btn-danger" @click="confirmTeamDeletion(team)" v-if="userOwns(team)">
+							<button class="btn btn-danger" @click.prevent="confirmTeamDeletion(team)" v-if="userOwns(team)">
 								<i class="fa fa-btn fa-times"></i>Delete
 							</button>
 						</td>
@@ -113,13 +113,13 @@
 						</td>
 
 						<td>
-							<button class="btn btn-success" @click="acceptInvite(invite)">
+							<button class="btn btn-success" @click.prevent="acceptInvite(invite)">
 								<i class="fa fa-btn fa-thumbs-up"></i>Accept
 							</button>
 						</td>
 
 						<td>
-							<button class="btn btn-danger" @click="rejectInvite(invite)">
+							<button class="btn btn-danger" @click.prevent="rejectInvite(invite)">
 								<i class="fa fa-btn fa-thumbs-down"></i>Reject
 							</button>
 						</td>
@@ -147,7 +147,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-					<button type="button" class="btn btn-danger" @click="deleteTeam" :disabled="deletingTeam">
+					<button type="button" class="btn btn-danger" @click.prevent="deleteTeam" :disabled="deletingTeam">
 						<span v-if=" ! deletingTeam">
 							<i class="fa fa-btn fa-times"></i>Delete Team
 						</span>

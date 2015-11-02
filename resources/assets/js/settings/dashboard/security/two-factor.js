@@ -46,9 +46,7 @@ Vue.component('spark-settings-security-two-factor-screen', {
         /**
          * Enable two-factor authentication for the user.
          */
-        enableTwoFactorAuth: function (e) {
-            e.preventDefault();
-
+        enableTwoFactorAuth: function () {
             this.twoFactorForm.errors = [];
             this.twoFactorForm.enabling = true;
             this.twoFactorForm.enabled = false;
@@ -72,9 +70,7 @@ Vue.component('spark-settings-security-two-factor-screen', {
         /**
          * Disable two-factor authentication for the user.
          */
-        disableTwoFactorAuth: function (e) {
-            e.preventDefault();
-
+        disableTwoFactorAuth: function () {
             this.twoFactorForm.enabled = false;
             this.disableTwoFactorForm.disabling = true;
 

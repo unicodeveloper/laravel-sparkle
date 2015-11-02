@@ -23,7 +23,7 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
-								<button type="submit" class="btn btn-primary" @click="sendInvite" :disabled="sendInviteForm.sending">
+								<button type="submit" class="btn btn-primary" @click.prevent="sendInvite" :disabled="sendInviteForm.sending">
 									<span v-if="sendInviteForm.sending">
 										<i class="fa fa-btn fa-spinner fa-spin"></i> Sending
 									</span>
@@ -57,7 +57,7 @@
 								</td>
 
 								<td>
-									<button class="btn btn-danger" @click="cancelInvite(invite)">
+									<button class="btn btn-danger" @click.prevent="cancelInvite(invite)">
 										<i class="fa fa-btn fa-times"></i>Cancel
 									</button>
 								</td>
@@ -92,13 +92,13 @@
 								</td>
 
 								<td>
-									<button class="btn btn-primary" v-if="userOwns(team)" @click="editTeamMember(teamMember)">
+									<button class="btn btn-primary" v-if="userOwns(team)" @click.prevent="editTeamMember(teamMember)">
 										<i class="fa fa-btn fa-edit"></i>Edit
 									</button>
 								</td>
 
 								<td>
-									<button class="btn btn-danger" v-if="userOwns(team)" @click="removeTeamMember(teamMember)">
+									<button class="btn btn-danger" v-if="userOwns(team)" @click.prevent="removeTeamMember(teamMember)">
 										<i class="fa fa-btn fa-times"></i>Remove
 									</button>
 								</td>
@@ -113,7 +113,7 @@
 				<div class="panel-heading">Leave Team</div>
 
 				<div class="panel-body">
-					<button class="btn btn-warning" @click="leaveTeam" :disabled="leavingTeam">
+					<button class="btn btn-warning" @click.prevent="leaveTeam" :disabled="leavingTeam">
 						<span v-if="leavingTeam">
 							<i class="fa fa-btn fa-spinner fa-spin"></i>Leaving
 						</span>

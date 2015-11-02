@@ -297,10 +297,8 @@ Vue.component('spark-subscription-register-screen', {
         /*
          * Initialize the registration process.
          */
-        register: function(e) {
+        register: function() {
             var self = this;
-
-            e.preventDefault();
 
             this.cardForm.errors = [];
             this.registerForm.errors = [];

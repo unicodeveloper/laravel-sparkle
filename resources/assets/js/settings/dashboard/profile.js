@@ -42,9 +42,7 @@ Vue.component('spark-settings-profile-screen', {
         /**
          * Update the user's profile information.
          */
-        updateProfile: function (e) {
-            e.preventDefault();
-
+        updateProfile: function () {
             this.updateProfileForm.errors = [];
             this.updateProfileForm.updated = false;
             this.updateProfileForm.updating = true;

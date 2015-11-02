@@ -10,7 +10,7 @@
 
 		<spark-errors form="@{{ resumeSubscriptionForm }}"></spark-errors>
 
-		<button class="btn btn-primary" @click="resumeSubscription" :disabled="resumeSubscriptionForm.resuming">
+		<button class="btn btn-primary" @click.prevent="resumeSubscription" :disabled="resumeSubscriptionForm.resuming">
 			<span v-if="resumeSubscriptionForm.resuming">
 				<i class="fa fa-btn fa-spinner fa-spin"></i>Resuming
 			</span>

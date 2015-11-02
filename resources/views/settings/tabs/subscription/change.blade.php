@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="pull-right" style="line-height: 32px;">
-			<button class="btn btn-primary" @click="confirmPlanChange" v-if="plans.length > 1">
+			<button class="btn btn-primary" @click.prevent="confirmPlanChange" v-if="plans.length > 1">
 				<i class="fa fa-btn fa-random"></i>Change Plan
 			</button>
 		</div>

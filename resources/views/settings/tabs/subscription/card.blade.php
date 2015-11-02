@@ -47,7 +47,7 @@
 
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-3">
-					<button type="submit" class="btn btn-primary" @click="updateCard" :disabled="updateCardForm.updating">
+					<button type="submit" class="btn btn-primary" @click.prevent="updateCard" :disabled="updateCardForm.updating">
 						<span v-if="updateCardForm.updating">
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 						</span>

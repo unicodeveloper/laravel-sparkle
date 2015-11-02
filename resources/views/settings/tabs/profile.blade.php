@@ -26,7 +26,7 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click="updateProfile" :disabled="updateProfileForm.updating">
+						<button type="submit" class="btn btn-primary" @click.prevent="updateProfile" :disabled="updateProfileForm.updating">
 							<span v-if="updateProfileForm.updating">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 							</span>

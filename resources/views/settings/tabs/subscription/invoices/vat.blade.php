@@ -25,7 +25,7 @@
 
 			<div class="form-group">
 				<div class="col-md-offset-3 col-md-6">
-					<button type="submit" class="btn btn-primary" @click="updateExtraBillingInfo" :disabled="extraBillingInfoForm.updating">
+					<button type="submit" class="btn btn-primary" @click.prevent="updateExtraBillingInfo" :disabled="extraBillingInfoForm.updating">
 						<span v-if="extraBillingInfoForm.updating">
 							<i class="fa fa-btn fa-spin fa-spinner "></i> Updating
 						</span>

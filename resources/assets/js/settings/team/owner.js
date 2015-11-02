@@ -46,9 +46,7 @@ Vue.component('spark-team-settings-owner-screen', {
     	/**
     	 * Update the team's information.
     	 */
-    	updateTeam: function (e) {
-    		e.preventDefault();
-
+    	updateTeam: function () {
     		this.updateTeamForm.errors = [];
     		this.updateTeamForm.updated = false;
     		this.updateTeamForm.updating = true;

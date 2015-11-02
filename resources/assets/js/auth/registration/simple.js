@@ -57,9 +57,7 @@ Vue.component('spark-simple-registration-screen', {
         /*
          * Initialize the registration process.
          */
-        register: function(e) {
-            e.preventDefault();
-
+        register: function() {
             this.registerForm.errors = [];
             this.registerForm.registering = true;
 

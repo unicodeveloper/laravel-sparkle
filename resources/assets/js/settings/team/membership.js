@@ -79,9 +79,7 @@ Vue.component('spark-team-settings-membership-screen', {
         /*
          * Send an invitation to a new user.
          */
-        sendInvite: function (e) {
-            e.preventDefault();
-
+        sendInvite: function () {
             this.sendInviteForm.errors = [];
             this.sendInviteForm.sent = false;
             this.sendInviteForm.sending = true;

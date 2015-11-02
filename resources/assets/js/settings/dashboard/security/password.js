@@ -40,9 +40,7 @@ Vue.component('spark-settings-security-password-screen', {
         /**
          * Update the user's password.
          */
-        updatePassword: function (e) {
-            e.preventDefault();
-
+        updatePassword: function () {
             this.updatePasswordForm.errors = [];
             this.updatePasswordForm.updated = false;
             this.updatePasswordForm.updating = true;

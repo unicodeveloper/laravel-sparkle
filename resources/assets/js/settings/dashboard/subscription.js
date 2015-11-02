@@ -419,10 +419,8 @@ Vue.component('spark-settings-subscription-screen', {
         /*
          * Update the user's subscription billing card (Stripe portion).
          */
-        updateCard: function (e) {
+        updateCard: function () {
             var self = this;
-
-            e.preventDefault();
 
             this.updateCardForm.errors = [];
             this.updateCardForm.updated = false;
