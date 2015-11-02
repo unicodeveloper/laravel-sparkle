@@ -17,6 +17,8 @@ Vue.component('spark-team-settings-membership-screen', {
             roles: [],
             leavingTeam: false,
 
+            editingTeamMember: null,
+
             sendInviteForm: new SparkForm({
                 email: ''
             })
@@ -113,7 +115,9 @@ Vue.component('spark-team-settings-membership-screen', {
          * Edit an existing team member.
          */
         editTeamMember: function (member) {
-            this.$broadcast('teamMemberEditRequested', member);
+            this.editingTeamMember = member;
+
+            $('#modal-edit-team-member').modal('show');
         },
 
 

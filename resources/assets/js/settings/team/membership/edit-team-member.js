@@ -1,4 +1,6 @@
 Vue.component('spark-team-settings-edit-team-member-screen', {
+    props: ['teamMember'],
+
     /*
      * Initial state of the component's data.
      */
@@ -8,13 +10,21 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
 	        team: null,
 	        roles: [],
 
-            editingTeamMember: null,
-
             updateTeamMemberForm: new SparkForm({
                 role: ''
             })
 		};
 	},
+
+
+    watch: {
+        /**
+         * Watch for updates to the "teamMember" data.
+         */
+        'teamMember': function (member) {
+            this.updateTeamMemberForm.role = member.pivot.role;
+        }
+    },
 
 
 	computed: {
@@ -57,20 +67,6 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
             this.roles = roles;
 
             return true;
-        },
-
-
-        /**
-         * Receive a request to edit a given team member.
-         */
-        teamMemberEditRequested: function (member) {
-            this.editingTeamMember = member;
-
-            this.updateTeamMemberForm.role = member.pivot.role;
-
-            $('#modal-edit-team-member').modal('show');
-
-            return true;
         }
 	},
 
@@ -82,7 +78,7 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
         updateTeamMember: function () {
             var self = this;
 
-            Spark.put('/settings/teams/' + this.team.id + '/members/' + this.editingTeamMember.id, this.updateTeamMemberForm)
+            Spark.put('/settings/teams/' + this.team.id + '/members/' + this.teamMember.id, this.updateTeamMemberForm)
                 .then(function (team) {
                     self.$dispatch('teamUpdated', team);
 
