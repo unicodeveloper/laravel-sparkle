@@ -1,4 +1,4 @@
-@extends('spark::layouts.spark')
+@extends('spark::layouts.app')
 
 <!-- Main Content -->
 @section('content')
