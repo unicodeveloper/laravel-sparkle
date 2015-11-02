@@ -38,6 +38,8 @@ Vue.component('spark-settings-security-two-factor-screen', {
 
             this.twoFactorForm.country_code = this.user.phone_country_code;
             this.twoFactorForm.phone_number = this.user.phone_number;
+
+            return true;
         }
     },
 

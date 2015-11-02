@@ -35,6 +35,8 @@ Vue.component('spark-settings-teams-screen', {
          */
         userRetrieved: function (user) {
             this.user = user;
+
+            return true;
         },
 
 
@@ -43,6 +45,8 @@ Vue.component('spark-settings-teams-screen', {
          */
         teamsRetrieved: function (teams) {
             this.teams = teams;
+
+            return true;
         }
     },
 

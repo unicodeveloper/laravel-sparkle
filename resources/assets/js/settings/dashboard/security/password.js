@@ -32,6 +32,8 @@ Vue.component('spark-settings-security-password-screen', {
          */
         userRetrieved: function (user) {
             this.user = user;
+
+            return true;
         }
     },
 

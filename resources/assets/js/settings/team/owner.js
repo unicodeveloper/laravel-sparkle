@@ -28,6 +28,8 @@ Vue.component('spark-team-settings-owner-screen', {
          */
         userRetrieved: function (user) {
             this.user = user;
+
+            return true;
         },
 
 
@@ -38,6 +40,8 @@ Vue.component('spark-team-settings-owner-screen', {
             this.team = team;
 
             this.updateTeamForm.name = this.team.name;
+
+            return true;
         }
     },
 

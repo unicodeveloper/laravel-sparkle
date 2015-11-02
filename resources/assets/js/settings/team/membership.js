@@ -55,6 +55,8 @@ Vue.component('spark-team-settings-membership-screen', {
          */
         userRetrieved: function (user) {
             this.user = user;
+
+            return true;
         },
 
 
@@ -63,6 +65,8 @@ Vue.component('spark-team-settings-membership-screen', {
          */
         teamRetrieved: function (team) {
             this.team = team;
+
+            return true;
         },
 
 
@@ -71,6 +75,8 @@ Vue.component('spark-team-settings-membership-screen', {
          */
         rolesRetrieved: function (roles) {
             this.roles = roles;
+
+            return true;
         }
     },
 

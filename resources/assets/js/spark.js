@@ -36,6 +36,8 @@ module.exports = {
          */
         updateUser: function () {
             this.getUser();
+
+            return true;
         },
 
 
@@ -44,6 +46,8 @@ module.exports = {
          */
         updateTeams: function () {
             this.getTeams();
+
+            return true;
         },
 
 
@@ -52,6 +56,8 @@ module.exports = {
          */
         teamsUpdated: function (teams) {
             this.$broadcast('teamsRetrieved', teams);
+
+            return true;
         }
     },
 

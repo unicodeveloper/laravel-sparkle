@@ -34,6 +34,8 @@ Vue.component('spark-settings-profile-screen', {
 
             this.updateProfileForm.name = user.name;
             this.updateProfileForm.email = user.email;
+
+            return true;
         }
     },
 

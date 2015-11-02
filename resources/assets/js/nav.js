@@ -16,6 +16,8 @@ Vue.component('spark-nav-bar-dropdown', {
          */
 		userRetrieved: function (user) {
 			this.user = user;
+
+			return true;
 		},
 
 
@@ -24,6 +26,8 @@ Vue.component('spark-nav-bar-dropdown', {
          */
 		teamsRetrieved: function (teams) {
 			this.teams = teams;
+
+			return true;
 		}
 	}
 });

@@ -38,6 +38,8 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
          */
         userRetrieved: function (user) {
             this.user = user;
+
+            return true;
         },
 
 
@@ -46,6 +48,8 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
          */
         teamRetrieved: function (team) {
             this.team = team;
+
+            return true;
         },
 
 
@@ -54,6 +58,8 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
          */
         rolesRetrieved: function (roles) {
             this.roles = roles;
+
+            return true;
         },
 
 
@@ -66,6 +72,8 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
             this.updateTeamMemberForm.role = member.pivot.role;
 
             $('#modal-edit-team-member').modal('show');
+
+            return true;
         }
 	},
 

@@ -24,6 +24,8 @@ Vue.component('spark-team-settings-screen', {
 			this.team = team;
 
 			this.$broadcast('teamRetrieved', team);
+
+			return true;
 		}
 	},
 

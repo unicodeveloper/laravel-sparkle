@@ -283,6 +283,8 @@ Vue.component('spark-settings-subscription-screen', {
             if (this.user.stripe_id) {
                 this.getCoupon();
             }
+
+            return true;
         }
     },
 
