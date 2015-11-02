@@ -11,7 +11,7 @@
 			</span>
 		</div>
 
-		<div v-repeat="plan : defaultPlans" style="margin-bottom: 10px;">
+		<div v-for="plan in defaultPlans" style="margin-bottom: 10px;">
 			<div v-if="plan.price > 0" style="margin-bottom: 10px;">
 				@include('spark::settings.tabs.subscription.subscribe.plan')
 			</div>
@@ -24,7 +24,7 @@
 			<strong>Yearly Plans</strong>
 		</div>
 
-		<div v-repeat="plan : yearlyPlans" style="margin-bottom: 10px;">
+		<div v-for="plan in yearlyPlans" style="margin-bottom: 10px;">
 			@include('spark::settings.tabs.subscription.subscribe.plan')
 		</div>
 	</div>

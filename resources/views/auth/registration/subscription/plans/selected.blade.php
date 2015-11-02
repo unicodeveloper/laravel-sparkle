@@ -10,7 +10,7 @@
 
 		<!-- Select Another Plan -->
 		<div class="pull-right" style="line-height: 32px;">
-			<button class="btn btn-primary" v-on="click: selectAnotherPlan">
+			<button class="btn btn-primary" @click="selectAnotherPlan">
 				<i class="fa fa-btn fa-arrow-left"></i>Change Plan
 			</button>
 		</div>

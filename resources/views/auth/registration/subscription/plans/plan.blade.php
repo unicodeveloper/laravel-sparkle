@@ -3,7 +3,7 @@
 	<div class="panel-heading text-center">@{{ plan.name }}</div>
 	<div class="panel-body">
 		<ul>
-			<li v-repeat="feature : plan.features">@{{ feature }}</li>
+			<li v-for="feature in plan.features">@{{ feature }}</li>
 		</ul>
 
 		<hr>
@@ -48,7 +48,7 @@
 		<hr>
 
 		<div class="spark-plan-subscribe-button-container">
-			<button class="btn btn-primary spark-plan-subscribe-button"  v-on="click: selectPlan(plan)">
+			<button class="btn btn-primary spark-plan-subscribe-button"  @click="selectPlan(plan)">
 				<span v-if=" ! plan.trialDays && plan.price == 0">
 					Register
 				</span>

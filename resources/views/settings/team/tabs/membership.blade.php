@@ -23,7 +23,7 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">
-								<button type="submit" class="btn btn-primary" v-on="click: sendInvite" v-attr="disabled: sendInviteForm.sending">
+								<button type="submit" class="btn btn-primary" @click="sendInvite" :disabled="sendInviteForm.sending">
 									<span v-if="sendInviteForm.sending">
 										<i class="fa fa-btn fa-spinner fa-spin"></i> Sending
 									</span>
@@ -51,13 +51,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-repeat="invite : team.invitations">
+							<tr v-for="invite in team.invitations">
 								<td class="spark-table-pad">
 									@{{ invite.email }}
 								</td>
 
 								<td>
-									<button class="btn btn-danger" v-on="click: cancelInvite(invite)">
+									<button class="btn btn-danger" @click="cancelInvite(invite)">
 										<i class="fa fa-btn fa-times"></i>Cancel
 									</button>
 								</td>
@@ -82,7 +82,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-repeat="teamMember : teamMembersExceptMe">
+							<tr v-for="teamMember in teamMembersExceptMe">
 								<td class="spark-table-pad">
 									@{{ teamMember.name }}
 								</td>
@@ -92,13 +92,13 @@
 								</td>
 
 								<td>
-									<button class="btn btn-primary" v-if="userOwns(team)" v-on="click: editTeamMember(teamMember)">
+									<button class="btn btn-primary" v-if="userOwns(team)" @click="editTeamMember(teamMember)">
 										<i class="fa fa-btn fa-edit"></i>Edit
 									</button>
 								</td>
 
 								<td>
-									<button class="btn btn-danger" v-if="userOwns(team)" v-on="click: removeTeamMember(teamMember)">
+									<button class="btn btn-danger" v-if="userOwns(team)" @click="removeTeamMember(teamMember)">
 										<i class="fa fa-btn fa-times"></i>Remove
 									</button>
 								</td>
@@ -113,7 +113,7 @@
 				<div class="panel-heading">Leave Team</div>
 
 				<div class="panel-body">
-					<button class="btn btn-warning" v-on="click: leaveTeam" v-attr="disabled: leavingTeam">
+					<button class="btn btn-warning" @click="leaveTeam" :disabled="leavingTeam">
 						<span v-if="leavingTeam">
 							<i class="fa fa-btn fa-spinner fa-spin"></i>Leaving
 						</span>

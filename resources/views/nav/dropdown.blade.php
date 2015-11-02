@@ -37,7 +37,7 @@
 				</li>
 
 				<!-- Team Listing -->
-				<li v-repeat="team : teams">
+				<li v-for="team in teams">
 					<a href="/settings/teams/switch/@{{ team.id }}">
 						<span v-if="team.id == user.current_team_id">
 							<i class="fa fa-btn fa-fw fa-check text-success"></i>@{{ team.name }}

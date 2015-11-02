@@ -53,7 +53,7 @@
 
 			<div class="form-group">
 				<div class="col-sm-6 col-sm-offset-4">
-					<button type="submit" class="btn btn-primary" v-on="click: register" v-attr="disabled: registerForm.registering">
+					<button type="submit" class="btn btn-primary" @click="register" :disabled="registerForm.registering">
 						<span v-if="registerForm.registering">
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Registering
 						</span>

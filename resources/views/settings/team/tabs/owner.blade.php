@@ -19,7 +19,7 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" v-on="click: updateTeam" v-attr="disabled: updateTeamForm.updating">
+						<button type="submit" class="btn btn-primary" @click="updateTeam" :disabled="updateTeamForm.updating">
 							<span v-if="updateTeamForm.updating">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 							</span>

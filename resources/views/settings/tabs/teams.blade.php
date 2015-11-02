@@ -17,7 +17,7 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" v-on="click: createTeam" v-attr="disabled: createTeamForm.creating">
+						<button type="submit" class="btn btn-primary" @click="createTeam" :disabled="createTeamForm.creating">
 							<span v-if="createTeamForm.creating">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Creating
 							</span>
@@ -48,7 +48,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-repeat="team : teams">
+					<tr v-for="team in teams">
 						<td class="spark-table-pad">
 							@{{ team.name }}
 						</td>
@@ -72,13 +72,13 @@
 						</td>
 
 						<td>
-							<button class="btn btn-warning" v-on="click: leaveTeam(team)" v-if=" ! userOwns(team)">
+							<button class="btn btn-warning" @click="leaveTeam(team)" v-if=" ! userOwns(team)">
 								<i class="fa fa-btn fa-sign-out"></i>Leave
 							</button>
 						</td>
 
 						<td>
-							<button class="btn btn-danger" v-on="click: confirmTeamDeletion(team)" v-if="userOwns(team)">
+							<button class="btn btn-danger" @click="confirmTeamDeletion(team)" v-if="userOwns(team)">
 								<i class="fa fa-btn fa-times"></i>Delete
 							</button>
 						</td>
@@ -103,7 +103,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-repeat="invite : invitations">
+					<tr v-for="invite in invitations">
 						<td class="spark-table-pad">
 							@{{ invite.team.name }}
 						</td>
@@ -113,13 +113,13 @@
 						</td>
 
 						<td>
-							<button class="btn btn-success" v-on="click: acceptInvite(invite)">
+							<button class="btn btn-success" @click="acceptInvite(invite)">
 								<i class="fa fa-btn fa-thumbs-up"></i>Accept
 							</button>
 						</td>
 
 						<td>
-							<button class="btn btn-danger" v-on="click: rejectInvite(invite)">
+							<button class="btn btn-danger" @click="rejectInvite(invite)">
 								<i class="fa fa-btn fa-thumbs-down"></i>Reject
 							</button>
 						</td>
@@ -147,7 +147,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
-					<button type="button" class="btn btn-danger" v-on="click: deleteTeam" v-attr="disabled: deletingTeam">
+					<button type="button" class="btn btn-danger" @click="deleteTeam" :disabled="deletingTeam">
 						<span v-if=" ! deletingTeam">
 							<i class="fa fa-btn fa-times"></i>Delete Team
 						</span>

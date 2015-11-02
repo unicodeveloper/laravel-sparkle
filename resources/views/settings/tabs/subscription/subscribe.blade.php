@@ -20,7 +20,7 @@
 			</div>
 
 			<div class="pull-right" style="line-height: 32px;">
-				<button class="btn btn-primary" v-on="click: selectAnotherPlan">
+				<button class="btn btn-primary" @click="selectAnotherPlan">
 					<i class="fa fa-btn fa-arrow-left"></i>Change Plan
 				</button>
 			</div>
@@ -83,7 +83,7 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" v-on="click: subscribe" v-attr="disabled: subscribeForm.subscribing">
+						<button type="submit" class="btn btn-primary" @click="subscribe" :disabled="subscribeForm.subscribing">
 							<span v-if="subscribeForm.subscribing">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Subscribing
 							</span>
