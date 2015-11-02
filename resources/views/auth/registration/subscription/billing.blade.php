@@ -67,14 +67,14 @@
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Registering
 						</span>
 
-						<span v-if=" ! registerForm.registering">
+						<span v-else>
 							<i class="fa fa-btn fa-check-circle"></i>
 
 							<span v-if=" ! selectedPlan.trialDays">
 								Register
 							</span>
 
-							<span v-if="selectedPlan.trialDays">
+							<span v-else>
 								Begin @{{ selectedPlan.trialDays }} Day Trial
 							</span>
 						</span>

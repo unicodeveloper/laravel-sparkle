@@ -15,7 +15,7 @@
 				<i class="fa fa-btn fa-spinner fa-spin"></i>Resuming
 			</span>
 
-			<span v-if=" ! resumeSubscriptionForm.resuming">
+			<span v-else>
 				<i class="fa fa-btn fa-clock-o"></i>Resume Subscription
 			</span>
 		</button>

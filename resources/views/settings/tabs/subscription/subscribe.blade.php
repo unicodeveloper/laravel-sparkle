@@ -88,7 +88,7 @@
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Subscribing
 							</span>
 
-							<span v-if=" ! subscribeForm.subscribing">
+							<span v-else>
 								<i class="fa fa-btn fa-check-circle"></i> Subscribe
 							</span>
 						</button>

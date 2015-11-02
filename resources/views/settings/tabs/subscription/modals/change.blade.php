@@ -21,7 +21,7 @@
 						<i class="fa fa-btn fa-random"></i>Change Plan
 					</span>
 
-					<span v-if="changePlanForm.changing">
+					<span v-else>
 						<i class="fa fa-btn fa-spinner fa-spin"></i>Changing
 					</span>
 				</button>

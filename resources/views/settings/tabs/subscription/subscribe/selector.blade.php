@@ -6,7 +6,7 @@
 				<strong>Monthly Plans</strong>
 			</span>
 
-			<span v-if=" ! includesBothPlanIntervals">
+			<span v-else>
 				<strong>Available Plans</strong>
 			</span>
 		</div>

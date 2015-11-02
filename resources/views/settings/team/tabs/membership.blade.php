@@ -28,7 +28,7 @@
 										<i class="fa fa-btn fa-spinner fa-spin"></i> Sending
 									</span>
 
-									<span v-if=" ! sendInviteForm.sending">
+									<span v-else>
 										<i class="fa fa-btn fa-envelope"></i> Send
 									</span>
 								</button>
@@ -118,7 +118,7 @@
 							<i class="fa fa-btn fa-spinner fa-spin"></i>Leaving
 						</span>
 
-						<span v-if=" ! leavingTeam">
+						<span v-else>
 							<i class="fa fa-btn fa-sign-out"></i>Leave Team
 						</span>
 					</button>

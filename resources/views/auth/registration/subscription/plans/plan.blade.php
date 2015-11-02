@@ -20,7 +20,7 @@
 				</div>
 			</div>
 
-			<div v-if=" ! currentCoupon">
+			<div v-else>
 				@{{ plan.currencySymbol }}@{{ plan.price }}
 			</div>
 		</div>

@@ -52,7 +52,7 @@
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 						</span>
 
-						<span v-if=" ! updateCardForm.updating">
+						<span v-else>
 							<i class="fa fa-btn fa-credit-card"></i> Update
 						</span>
 					</button>

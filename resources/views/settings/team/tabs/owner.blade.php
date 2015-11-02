@@ -24,7 +24,7 @@
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
 							</span>
 
-							<span v-if=" ! updateTeamForm.updating">
+							<span v-else>
 								<i class="fa fa-btn fa-save"></i> Update
 							</span>
 						</button>

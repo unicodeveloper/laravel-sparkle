@@ -22,7 +22,7 @@
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Creating
 							</span>
 
-							<span v-if=" ! createTeamForm.creating">
+							<span v-else>
 								<i class="fa fa-btn fa-users"></i> Create
 							</span>
 						</button>
@@ -58,7 +58,7 @@
 								You
 							</span>
 
-							<span v-if=" ! userOwns(team)">
+							<span v-else>
 								@{{ team.owner.name }}
 							</span>
 						</td>
@@ -148,12 +148,12 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
 					<button type="button" class="btn btn-danger" @click.prevent="deleteTeam" :disabled="deletingTeam">
-						<span v-if=" ! deletingTeam">
-							<i class="fa fa-btn fa-times"></i>Delete Team
-						</span>
-
 						<span v-if="deletingTeam">
 							<i class="fa fa-btn fa-spinner fa-spin"></i>Deleting
+						</span>
+
+						<span v-else>
+							<i class="fa fa-btn fa-times"></i>Delete Team
 						</span>
 					</button>
 				</div>

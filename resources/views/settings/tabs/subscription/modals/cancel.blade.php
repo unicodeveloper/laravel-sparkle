@@ -20,7 +20,7 @@
 						<i class="fa fa-btn fa-times"></i>Cancel Subscription
 					</span>
 
-					<span v-if="cancelSubscriptionForm.cancelling">
+					<span v-else>
 						<i class="fa fa-btn fa-spinner fa-spin"></i>Cancelling
 					</span>
 				</button>

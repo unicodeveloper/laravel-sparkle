@@ -58,7 +58,7 @@
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Registering
 						</span>
 
-						<span v-if=" ! registerForm.registering">
+						<span v-else>
 							<i class="fa fa-btn fa-check-circle"></i> Register
 						</span>
 					</button>

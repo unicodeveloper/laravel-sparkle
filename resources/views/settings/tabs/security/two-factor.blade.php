@@ -35,7 +35,7 @@
 										<i class="fa fa-btn fa-spinner fa-spin"></i> Enabling
 									</span>
 
-									<span v-if=" ! twoFactorForm.enabling">
+									<span v-else>
 										<i class="fa fa-btn fa-phone"></i> Enable
 									</span>
 								</button>
@@ -65,7 +65,7 @@
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Disabling
 							</span>
 
-							<span v-if=" ! disableTwoFactorForm.disabling">
+							<span v-else>
 								<i class="fa fa-btn fa-times"></i> Disable
 							</span>
 						</button>

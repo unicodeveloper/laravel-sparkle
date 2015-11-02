@@ -30,7 +30,7 @@
 							<i class="fa fa-btn fa-spin fa-spinner "></i> Updating
 						</span>
 
-						<span v-if=" ! extraBillingInfoForm.updating">
+						<span v-else>
 							<i class="fa fa-btn fa-save"></i> Update
 						</span>
 					</button>
