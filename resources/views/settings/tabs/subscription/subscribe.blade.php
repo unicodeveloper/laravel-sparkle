@@ -83,8 +83,8 @@
 
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click.prevent="subscribe" :disabled="subscribeForm.subscribing">
-							<span v-if="subscribeForm.subscribing">
+						<button type="submit" class="btn btn-primary" @click.prevent="subscribe" :disabled="subscribeForm.busy">
+							<span v-if="subscribeForm.busy">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Subscribing
 							</span>
 

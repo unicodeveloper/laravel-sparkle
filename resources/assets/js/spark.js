@@ -59,8 +59,8 @@ module.exports = {
         /**
          * Receive an updated team list from a child component.
          */
-        teamsUpdated: function (teams) {
-            this.$broadcast('teamsRetrieved', teams);
+        updateTeams: function () {
+            this.getTeams();
 
             return true;
         }

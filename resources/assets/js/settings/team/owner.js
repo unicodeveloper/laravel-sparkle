@@ -51,9 +51,9 @@ Vue.component('spark-team-settings-owner-screen', {
             var self = this;
 
             Spark.put('/settings/teams/' + this.team.id, this.updateTeamForm)
-                .then(function (team) {
+                .then(function () {
+                    self.$dispatch('updateTeam');
                     self.$dispatch('updateTeams');
-                    self.$dispatch('teamUpdated', team);
                 });
     	}
     }

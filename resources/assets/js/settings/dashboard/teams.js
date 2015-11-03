@@ -68,11 +68,11 @@ Vue.component('spark-settings-teams-screen', {
             var self = this;
 
             Spark.post('/settings/teams', this.createTeamForm)
-                .then(function (teams) {
+                .then(function () {
                     self.createTeamForm.name = '';
 
                     self.$dispatch('updateUser');
-                    self.$dispatch('teamsUpdated', teams);
+                    self.$dispatch('updateTeams');
                 });
         },
 
@@ -86,9 +86,9 @@ Vue.component('spark-settings-teams-screen', {
             });
 
             this.$http.delete('/settings/teams/' + team.id + '/membership')
-                .success(function (teams) {
+                .success(function () {
                     this.$dispatch('updateUser');
-                    this.$dispatch('teamsUpdated', teams);
+                    this.$dispatch('updateTeams');
                 });
         },
 
@@ -110,11 +110,11 @@ Vue.component('spark-settings-teams-screen', {
             var self = this;
 
             Spark.delete('/settings/teams/' + this.teamToDelete.id, this.deleteTeamForm)
-                .then(function (teams) {
+                .then(function () {
                     $('#modal-delete-team').modal('hide');
 
                     self.$dispatch('updateUser');
-                    self.$dispatch('teamsUpdated', teams);
+                    self.$dispatch('updateTeams');
                 });
         },
 
@@ -128,9 +128,9 @@ Vue.component('spark-settings-teams-screen', {
             });
 
             this.$http.post('/settings/teams/invitations/' + invite.id + '/accept')
-                .success(function (teams) {
+                .success(function () {
                     this.$dispatch('updateUser');
-                    this.$dispatch('teamsUpdated', teams);
+                    this.$dispatch('updateTeams');
                 });
         },
 

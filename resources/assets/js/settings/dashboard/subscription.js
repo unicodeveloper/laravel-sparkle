@@ -296,9 +296,6 @@ Vue.component('spark-settings-subscription-screen', {
             this.$http.get('spark/api/subscriptions/user/coupon')
                 .success(function (coupon) {
                     this.currentCoupon = coupon;
-                })
-                .error(function () {
-                    //
                 });
         },
 
@@ -353,14 +350,11 @@ Vue.component('spark-settings-subscription-screen', {
          * Subscribe the user to a new plan.
          */
         sendSubscription: function () {
-            this.$http.post('settings/user/plan', this.subscribeForm)
-                .success(function (user) {
-                    this.user = user;
-                    this.subscribeForm.subscribing = false;
-                })
-                .error(function (errors) {
-                    Spark.setErrorsOnForm(this.subscribeForm, errors);
-                    this.subscribeForm.subscribing = false;
+            var self = this;
+
+            Spark.post('/settings/user/plan', this.subscribeForm)
+                .then(function () {
+                    self.$dispatch('updateUser');
                 });
         },
 
@@ -393,7 +387,7 @@ Vue.component('spark-settings-subscription-screen', {
             var self = this;
 
             Spark.put('/settings/user/plan', this.changePlanForm)
-                .then(function (user) {
+                .then(function () {
                     self.$dispatch('updateUser');
 
                     /*
@@ -448,8 +442,8 @@ Vue.component('spark-settings-subscription-screen', {
          */
         updateCardUsingToken: function (token) {
             this.$http.put('settings/user/card', { stripe_token: token })
-                .success(function (user) {
-                    this.user = user;
+                .success(function () {
+                    this.$dispatch('updateUser');
 
                     this.updateCardForm = settingsSubscriptionScreenForms.updateCard();
                     this.updateCardForm.updated = true;
@@ -484,8 +478,8 @@ Vue.component('spark-settings-subscription-screen', {
             var self = this;
 
             Spark.delete('/settings/user/plan', this.cancelSubscriptionForm)
-                .then(function (user) {
-                    self.user = user;
+                .then(function () {
+                    self.$dispatch('updateUser');
 
                     $('#modal-cancel-subscription').modal('hide');
 
@@ -503,8 +497,8 @@ Vue.component('spark-settings-subscription-screen', {
             var self = this;
 
             Spark.post('/settings/user/plan/resume', this.resumeSubscriptionForm)
-                .then(function (user) {
-                    self.user = user;
+                .then(function () {
+                    self.$dispatch('updateUser');
                 });
         },
 

@@ -79,8 +79,8 @@ Vue.component('spark-team-settings-edit-team-member-screen', {
             var self = this;
 
             Spark.put('/settings/teams/' + this.team.id + '/members/' + this.teamMember.id, this.updateTeamMemberForm)
-                .then(function (team) {
-                    self.$dispatch('teamUpdated', team);
+                .then(function () {
+                    self.$dispatch('updateTeam');
 
                     $('#modal-edit-team-member').modal('hide');
                 });

@@ -88,8 +88,8 @@ Vue.component('spark-team-settings-membership-screen', {
             var self = this;
 
             Spark.post('/settings/teams/' + this.team.id + '/invitations', this.sendInviteForm)
-                .then(function (team) {
-                    self.$dispatch('teamUpdated', team);
+                .then(function () {
+                    self.$dispatch('updateTeam');
 
                     self.sendInviteForm.email = '';
                 });
@@ -105,8 +105,8 @@ Vue.component('spark-team-settings-membership-screen', {
             });
 
             this.$http.delete('/settings/teams/' + this.team.id + '/invitations/' + invite.id)
-                .success(function (team) {
-                    this.$dispatch('teamUpdated', team);
+                .success(function () {
+                    this.$dispatch('updateTeam');
                 });
         },
 
@@ -130,8 +130,8 @@ Vue.component('spark-team-settings-membership-screen', {
             });
 
             this.$http.delete('/settings/teams/' + this.team.id + '/members/' + teamMember.id)
-                .success(function (team) {
-                    this.$dispatch('teamUpdated', team);
+                .success(function () {
+                    this.$dispatch('updateTeam');
                 });
         },
 
