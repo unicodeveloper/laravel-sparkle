@@ -22,10 +22,10 @@ Vue.component('spark-simple-registration-screen', {
             invitation: null,
             failedToLoadInvitation: false,
 
-            registerForm: {
+            registerForm: new SparkForm({
                 team_name: '', name: '', email: '', password: '', password_confirmation: '',
-                plan: '', terms: false, invitation: null, errors: [], registering: false
-            },
+                plan: '', terms: false, invitation: null
+            }),
         };
     },
 
@@ -58,16 +58,9 @@ Vue.component('spark-simple-registration-screen', {
          * Initialize the registration process.
          */
         register: function() {
-            this.registerForm.errors = [];
-            this.registerForm.registering = true;
-
-            this.$http.post('/register', this.registerForm)
-                .success(function(response) {
+            Spark.post('/register', this.registerForm)
+                .then(function (response) {
                     window.location = response.path;
-                })
-                .error(function(errors) {
-                    this.registerForm.registering = false;
-                    Spark.setErrorsOnForm(this.registerForm, errors);
                 });
         }
     }
