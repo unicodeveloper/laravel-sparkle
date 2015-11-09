@@ -7,11 +7,13 @@ window.SparkForm = function (data) {
 
     _.extend(this, data);
 
+    this.fullErrors = {};
     this.errors = [];
     this.busy = false;
     this.successful = false;
 
     this.startProcessing = function () {
+        form.fullErrors = {};
         form.errors = [];
         form.busy = true;
         form.successful = false;
@@ -58,6 +60,7 @@ _.extend(Spark, {
                     resolve(response);
                 })
                 .error(function (errors) {
+                    form.fullErrors = errors;
                     Spark.setErrorsOnForm(form, errors);
                     form.busy = false;
 

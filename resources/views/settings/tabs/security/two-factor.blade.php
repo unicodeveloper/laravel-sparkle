@@ -11,22 +11,20 @@
 						<a href="https://authy.com" target="_blank">Authy</a> application on your phone.
 					</div>
 
-					<spark-errors :form="twoFactorForm"></spark-errors>
+            		<spark-error-alert :form="twoFactorForm"></spark-error-alert>
 
 					<form class="form-horizontal" role="form">
-						<div class="form-group">
-							<label class="col-md-3 control-label">Country Code</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="country_code" v-model="twoFactorForm.country_code" placeholder="1">
-							</div>
-						</div>
+		                <spark-text :display="'Country Code'"
+		                            :form="twoFactorForm"
+		                            :name="'country_code'"
+		                            :input.sync="twoFactorForm.country_code">
+		                </spark-text>
 
-						<div class="form-group">
-							<label class="col-md-3 control-label">Phone Number</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="phone_number" v-model="twoFactorForm.phone_number" placeholder="555-555-5555">
-							</div>
-						</div>
+		                <spark-text :display="'Phone Number'"
+		                            :form="twoFactorForm"
+		                            :name="'phone_number'"
+		                            :input.sync="twoFactorForm.phone_number">
+		                </spark-text>
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-3">

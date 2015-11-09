@@ -156,6 +156,24 @@ Vue.component('spark-settings-teams-screen', {
             }
 
             return this.user.id === team.owner_id;
+        },
+
+        /**
+         * Experimental Error Stuff! Also fullErrors on form...
+         */
+        hasError: function (form, field) {
+            var keys = _.keys(form.fullErrors);
+            console.log(keys);
+            if (_.indexOf(keys, field) > -1) {
+                return true;
+            }
+            return false;
+        },
+
+        getError: function (form, field) {
+            if (this.hasError(form, field)) {
+                return form.fullErrors[field][0];
+            }
         }
     }
 });

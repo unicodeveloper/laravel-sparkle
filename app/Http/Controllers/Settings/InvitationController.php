@@ -53,7 +53,7 @@ class InvitationController extends Controller
                 ->findOrFail($teamId);
 
         if ($team->invitations()->where('email', $request->email)->exists()) {
-            return response()->json(['email' => 'That user is already invited to the team.'], 422);
+            return response()->json(['email' => ['That user is already invited to the team.']], 422);
         }
 
         $team->inviteUserByEmail($request->email);

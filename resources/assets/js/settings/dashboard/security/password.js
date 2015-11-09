@@ -15,7 +15,7 @@ Vue.component('spark-settings-security-password-screen', {
             user: null,
 
             updatePasswordForm: new SparkForm({
-                old_password: '',
+                current_password: '',
                 password: '',
                 password_confirmation: ''
             })
@@ -44,7 +44,7 @@ Vue.component('spark-settings-security-password-screen', {
 
             Spark.put('/settings/user/password', this.updatePasswordForm)
                 .then(function () {
-                    self.updatePasswordForm.old_password = '';
+                    self.updatePasswordForm.current_password = '';
                     self.updatePasswordForm.password = '';
                     self.updatePasswordForm.password_confirmation = '';
                 });

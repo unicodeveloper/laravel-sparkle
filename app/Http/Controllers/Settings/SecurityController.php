@@ -48,13 +48,13 @@ class SecurityController extends Controller
     public function updatePassword(Request $request)
     {
         $this->validate($request, [
-            'old_password' => 'required',
+            'current_password' => 'required',
             'password' => 'required|confirmed|min:6',
         ]);
 
-        if (! Hash::check($request->old_password, Auth::user()->password)) {
+        if (! Hash::check($request->current_password, Auth::user()->password)) {
             return response()->json(
-                ['The old password you provided is incorrect.'], 422
+                ['current_password' => ['The current password you provided is incorrect.']], 422
             );
         }
 
@@ -86,7 +86,7 @@ class SecurityController extends Controller
         } catch (Exception $e) {
             app(ExceptionHandler::class)->report($e);
 
-            return response()->json(['The provided phone information is invalid.'], 422);
+            return response()->json(['phone_number' => ['The provided phone information is invalid.']], 422);
         }
 
         $user->save();
@@ -114,7 +114,7 @@ class SecurityController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors()->all(), 422);
+            return response()->json($validator->errors(), 422);
         }
     }
 

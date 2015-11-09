@@ -7,6 +7,7 @@ require('./core/components');
  * Load the Spark form utilities.
  */
 require('./core/form-utils');
+require('./core/form-fields');
 
 /**
  * Export the Spark application.

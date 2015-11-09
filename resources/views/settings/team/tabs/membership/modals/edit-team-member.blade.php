@@ -8,21 +8,16 @@
 				</div>
 
 				<div class="modal-body">
-					<spark-errors :form="updateTeamMemberForm"></spark-errors>
+            		<spark-error-alert :form="updateTeamMemberForm"></spark-error-alert>
 
 					<!-- Edit Team Member Form -->
 					<form class="form-horizontal" role="form">
-						<div class="form-group">
-							<label class="col-md-3 control-label">Role</label>
-
-							<div class="col-md-8">
-								<select class="form-control" v-model="updateTeamMemberForm.role">
-									<option v-for="role in assignableRoles" :value="role.value">
-										@{{ role.text }}
-									</option>
-								</select>
-							</div>
-						</div>
+		                <spark-select :display="'Role'"
+		                              :form="updateTeamMemberForm"
+		                              :name="'role'"
+		                              :items="assignableRoles"
+		                              :input.sync="updateTeamMemberForm.role">
+		                </spark-select>
 					</form>
 				</div>
 

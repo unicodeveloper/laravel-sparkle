@@ -27,7 +27,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body id="spark-layout">
     <!-- Vue App For Spark Screens -->
     <div id="spark-app" v-cloak>
         <!-- Navigation -->

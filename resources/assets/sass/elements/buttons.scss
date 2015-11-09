@@ -8,34 +8,6 @@
 		transition: background-color 0.2s ease;
 	}
 
-	.btn-primary {
-		border-bottom: 2px solid darken($brand-primary, 10%);
-		border-left: 0;
-		border-right: 0;
-		border-top: 0;
-	}
-
-	.btn-success {
-		border-bottom: 2px solid darken($brand-success, 10%);
-		border-left: 0;
-		border-right: 0;
-		border-top: 0;
-	}
-
-	.btn-warning {
-		border-bottom: 2px solid darken($brand-warning, 10%);
-		border-left: 0;
-		border-right: 0;
-		border-top: 0;
-	}
-
-	.btn-danger {
-		border-bottom: 2px solid darken($brand-danger, 10%);
-		border-left: 0;
-		border-right: 0;
-		border-top: 0;
-	}
-
 	.btn-link {
 		font-weight: 300;
 	}

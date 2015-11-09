@@ -1,44 +1,42 @@
 <spark-settings-profile-screen inline-template>
-	<div id="spark-settings-profile-screen" class="panel panel-default">
-		<div class="panel-heading">Update Profile</div>
+    <div id="spark-settings-profile-screen" class="panel panel-default">
+        <div class="panel-heading">Update Profile</div>
 
-		<div class="panel-body">
-			<spark-errors :form="updateProfileForm"></spark-errors>
+        <div class="panel-body">
+            <spark-error-alert :form="updateProfileForm"></spark-error-alert>
 
-			<div class="alert alert-success" v-if="updateProfileForm.successful">
-				<strong>Great!</strong> Your profile was successfully updated.
-			</div>
+            <div class="alert alert-success" v-if="updateProfileForm.successful">
+                <strong>Great!</strong> Your profile was successfully updated.
+            </div>
 
-			<form class="form-horizontal" role="form">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Name</label>
-					<div class="col-md-6">
-						<input type="text" class="form-control" name="name" v-model="updateProfileForm.name">
-					</div>
-				</div>
+            <form class="form-horizontal" role="form">
+                <spark-text :display="'Name'"
+                            :form="updateProfileForm"
+                            :name="'name'"
+                            :input.sync="updateProfileForm.name">
+                </spark-text>
 
-				<div class="form-group">
-					<label class="col-md-3 control-label">E-Mail Address</label>
-					<div class="col-md-6">
-						<input type="email" class="form-control" name="email" v-model="updateProfileForm.email">
-					</div>
-				</div>
+                <spark-email :display="'E-Mail Address'"
+                             :form="updateProfileForm"
+                             :name="'email'"
+                             :input.sync="updateProfileForm.email">
+                </spark-email>
 
-				<div class="form-group">
-					<div class="col-md-6 col-md-offset-3">
-						<button type="submit" class="btn btn-primary" @click.prevent="updateProfile" :disabled="updateProfileForm.busy">
-							<span v-if="updateProfileForm.busy">
-								<i class="fa fa-btn fa-spinner fa-spin"></i> Updating
-							</span>
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary" @click.prevent="updateProfile" :disabled="updateProfileForm.busy">
+                            <span v-if="updateProfileForm.busy">
+                                <i class="fa fa-btn fa-spinner fa-spin"></i> Updating
+                            </span>
 
-							<span v-else>
-								<i class="fa fa-btn fa-save"></i> Update
-							</span>
-						</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+                            <span v-else>
+                                <i class="fa fa-btn fa-save"></i> Update
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </spark-settings-profile-screen>
 

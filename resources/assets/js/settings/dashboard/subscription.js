@@ -2,7 +2,7 @@ var settingsSubscriptionScreenForms = {
     updateCard: function () {
         return {
             number: '', cvc: '', month: '', year: '', zip: '',
-            errors: [], updating: false, updated: false
+            fullErrors: {}, errors: [], updating: false, updated: false
         };
     }
 };
@@ -45,13 +45,13 @@ Vue.component('spark-settings-subscription-screen', {
 
             plans: [],
 
-            subscribeForm: {
-                plan: '', terms: false, stripe_token: null, errors: [], subscribing: false
-            },
+            subscribeForm: new SparkForm({
+                plan: '', terms: false, stripe_token: null
+            }),
 
-            cardForm: {
-                number: '', cvc: '', month: '', year: '', zip: '', errors: []
-            },
+            cardForm: new SparkForm({
+                number: '', cvc: '', month: '', year: '', zip: ''
+            }),
 
             changePlanForm: new SparkForm({
                 plan: ''
@@ -317,8 +317,13 @@ Vue.component('spark-settings-subscription-screen', {
         subscribe: function () {
             var self = this;
 
+            this.cardForm.fullErrors = {};
+            this.cardForm.errors = [];
+
+            this.subscribeForm.fullErrors = {};
             this.subscribeForm.errors = [];
-            this.subscribeForm.subscribing = true;
+
+            this.subscribeForm.busy = true;
 
             /*
              * Here we will build the payload to send to Stripe, which will
@@ -336,8 +341,10 @@ Vue.component('spark-settings-subscription-screen', {
 
             Stripe.card.createToken(payload, function (status, response) {
                 if (response.error) {
-                    self.subscribeForm.errors.push(response.error.message);
-                    self.subscribeForm.subscribing = false;
+                    self.cardForm.fullErrors = {number: [response.error.message]};
+                    self.cardForm.errors = [response.error.message];
+
+                    self.subscribeForm.busy = false;
                 } else {
                     self.subscribeForm.stripe_token = response.id;
                     self.sendSubscription();
@@ -428,7 +435,9 @@ Vue.component('spark-settings-subscription-screen', {
 
             Stripe.card.createToken(payload, function (status, response) {
                 if (response.error) {
-                    self.updateCardForm.errors.push(response.error.message);
+                    self.updateCardForm.fullErrors = {number: [response.error.message]};
+                    self.updateCardForm.errors = [response.error.message];
+
                     self.updateCardForm.updating = false;
                 } else {
                     self.updateCardUsingToken(response.id);
@@ -526,6 +535,24 @@ Vue.component('spark-settings-subscription-screen', {
                     html: true
                 });
             }, 250);
+        },
+
+
+        /**
+         * Determine if the form has an error for the field.
+         */
+        hasError: function (form, field) {
+            return _.indexOf(_.keys(form.fullErrors), field) > -1;
+        },
+
+
+        /**
+         * Get the first error for the given field if it exists.
+         */
+        getError: function (form, field) {
+            if (this.hasError(form, field)) {
+                return form.fullErrors[field][0];
+            }
         }
     }
 });

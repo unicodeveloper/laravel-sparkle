@@ -14,6 +14,12 @@
 
 	.navbar-nav {
 		padding-top: 0px;
+
+		> li > a {
+			font-size: 14px;
+			font-weight: 400;
+			text-transform: uppercase;
+		}
 	}
 
 	.dropdown-menu {
