@@ -7,6 +7,8 @@
                 <div class="panel-heading">Send Invitation</div>
 
                 <div class="panel-body">
+                    <spark-error-alert :form="sendInviteForm"></spark-error-alert>
+
                     <form method="POST" class="form-horizontal" role="form">
                         <div class="alert alert-success" v-if="sendInviteForm.successful">
                             <strong>Done!</strong> The invitation has been sent.
