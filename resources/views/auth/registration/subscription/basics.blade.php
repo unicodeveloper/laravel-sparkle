@@ -1,52 +1,51 @@
 <div class="panel panel-default">
 	<div class="panel-heading">The Basics</div>
 	<div class="panel-body">
-		<spark-errors :form="registerForm"></spark-errors>
+		<spark-error-alert :form="registerForm"></spark-error-alert>
 
 		<form class="form-horizontal" role="form" id="subscription-basics-form">
 			@if (Spark::usingTeams())
-				<div class="form-group" v-if=" ! invitation">
-					<label class="col-md-4 control-label">Team Name</label>
-					<div class="col-md-6">
-						<input type="text" class="form-control spark-first-field" name="team_name" v-model="registerForm.team_name">
-					</div>
-				</div>
+                <spark-text :display="'Team Name'"
+                            :form="registerForm"
+                            :name="'team_name'"
+                            :input.sync="registerForm.team_name">
+                </spark-text>
 			@endif
 
-			<div class="form-group">
-				<label class="col-md-4 control-label">Name</label>
-				<div class="col-md-6">
-					<input type="text" class="form-control spark-first-field" name="name" v-model="registerForm.name">
-				</div>
-			</div>
+            <spark-text :display="'Name'"
+                        :form="registerForm"
+                        :name="'name'"
+                        :input.sync="registerForm.name">
+            </spark-text>
 
-			<div class="form-group">
-				<label class="col-md-4 control-label">E-Mail Address</label>
-				<div class="col-md-6">
-					<input type="email" class="form-control" name="email" v-model="registerForm.email">
-				</div>
-			</div>
+            <spark-email :display="'E-Mail Address'"
+                        :form="registerForm"
+                        :name="'email'"
+                        :input.sync="registerForm.email">
+            </spark-email>
 
-			<div class="form-group">
-				<label class="col-md-4 control-label">Password</label>
-				<div class="col-md-6">
-					<input type="password" class="form-control" name="password" v-model="registerForm.password">
-				</div>
-			</div>
+            <spark-password :display="'Password'"
+                        :form="registerForm"
+                        :name="'password'"
+                        :input.sync="registerForm.password">
+            </spark-password>
 
-			<div class="form-group">
-				<label class="col-md-4 control-label">Confirm Password</label>
-				<div class="col-md-6">
-					<input type="password" class="form-control" name="password_confirmation" v-model="registerForm.password_confirmation">
-				</div>
-			</div>
+            <spark-password :display="'Confirm Password'"
+                        :form="registerForm"
+                        :name="'password_confirmation'"
+                        :input.sync="registerForm.password_confirmation">
+            </spark-password>
 
 			<div v-if="freePlanIsSelected">
-				<div class="form-group">
+				<div class="form-group" :class="{'has-error': hasError(registerForm, 'terms')}">
 					<div class="col-sm-6 col-sm-offset-4">
 						<div class="checkbox">
 							<label>
 								<input type="checkbox" v-model="registerForm.terms"> I Accept The <a href="/terms" target="_blank">Terms Of Service</a>
+
+			                    <span class="help-block" v-show="hasError(registerForm, 'terms')">
+			                        <strong>@{{ getError(registerForm, 'terms') }}</strong>
+			                    </span>
 							</label>
 						</div>
 					</div>
@@ -54,8 +53,8 @@
 
 				<div class="form-group">
 					<div class="col-sm-6 col-sm-offset-4">
-						<button type="submit" class="btn btn-primary" @click.prevent="register" :disabled="registerForm.registering">
-							<span v-if="registerForm.registering">
+						<button type="submit" class="btn btn-primary" @click.prevent="register" :disabled="registerForm.busy">
+							<span v-if="registerForm.busy">
 								<i class="fa fa-btn fa-spinner fa-spin"></i> Registering
 							</span>
 

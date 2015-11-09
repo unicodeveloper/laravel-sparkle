@@ -31,15 +31,14 @@ Vue.component('spark-subscription-register-screen', {
             invitation: null,
             failedToLoadInvitation: false,
 
-            registerForm: {
+            registerForm: new SparkForm({
                 team_name: '', name: '', email: '', password: '', password_confirmation: '',
-                plan: '', terms: false, coupon: null, invitation: null,
-                stripe_token: null, errors: [], registering: false
-            },
+                plan: '', terms: false, coupon: null, invitation: null, stripe_token: null
+            }),
 
-            cardForm: {
-                number: '', cvc: '', month: '', year: '', zip: '', errors: []
-            }
+            cardForm: new SparkForm({
+                number: '', cvc: '', month: '', year: '', zip: ''
+            })
         };
     },
 
@@ -300,9 +299,13 @@ Vue.component('spark-subscription-register-screen', {
         register: function() {
             var self = this;
 
+            this.cardForm.fullErrors = {};
             this.cardForm.errors = [];
+
+            this.registerForm.fullErrors = {};
             this.registerForm.errors = [];
-            this.registerForm.registering = true;
+
+            this.registerForm.busy = true;
 
             if (this.freePlanIsSelected) {
                 return this.sendRegistration();
@@ -324,8 +327,10 @@ Vue.component('spark-subscription-register-screen', {
 
             Stripe.card.createToken(payload, function (status, response) {
                 if (response.error) {
+                    self.cardForm.fullErrors = {number: [response.error.message]};
                     self.cardForm.errors.push(response.error.message);
-                    self.registerForm.registering = false;
+
+                    self.registerForm.busy = false;
                 } else {
                     self.registerForm.stripe_token = response.id;
                     self.sendRegistration();
@@ -351,7 +356,9 @@ Vue.component('spark-subscription-register-screen', {
                     window.location = '/home';
                 })
                 .error(function(errors) {
-                    this.registerForm.registering = false;
+                    this.registerForm.busy = false;
+
+                    this.registerForm.fullErrors = errors;
                     Spark.setErrorsOnForm(this.registerForm, errors);
                 });
         },
@@ -374,5 +381,23 @@ Vue.component('spark-subscription-register-screen', {
                     console.error("Spark only supports up to 4 plans per interval.");
             }
         },
+
+
+        /**
+         * Determine if the form has an error for the field.
+         */
+        hasError: function (form, field) {
+            return _.indexOf(_.keys(form.fullErrors), field) > -1;
+        },
+
+
+        /**
+         * Get the first error for the given field if it exists.
+         */
+        getError: function (form, field) {
+            if (this.hasError(form, field)) {
+                return form.fullErrors[field][0];
+            }
+        }
     }
 });

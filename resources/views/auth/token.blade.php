@@ -8,15 +8,22 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Two-Factor Authentication</div>
 				<div class="panel-body">
-					@include('spark::common.errors', ['form' => 'default'])
+					@include('spark::common.error-alert', ['form' => 'default'])
 
 					<form class="form-horizontal" role="form" method="POST" action="/login/token">
 						{!! csrf_field() !!}
 
-						<div class="form-group">
+						<div class="form-group{{ $errors->has('token') ? ' has-error' : '' }}">
 							<label class="col-md-4 control-label">Verification Code</label>
+
 							<div class="col-md-6">
 								<input type="text" class="form-control spark-first-field" name="token">
+
+	                            @if ($errors->has('token'))
+	                                <span class="help-block">
+	                                    <strong>{{ $errors->first('token') }}</strong>
+	                                </span>
+	                            @endif
 							</div>
 						</div>
 
