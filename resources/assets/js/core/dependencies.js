@@ -3,7 +3,7 @@
  *
  * Vue is the JavaScript framework used by Spark.
  */
-window.Vue = require('vue');
+if (window.Vue === undefined) window.Vue = require('vue');
 
 require('vue-resource');
 Vue.http.headers.common['X-CSRF-TOKEN'] = Spark.csrfToken;
@@ -16,16 +16,17 @@ window.Promise = require('promise');
 /*
  * Load Underscore.js, used for map / reduce on arrays.
  */
-window._ = require('underscore');
+if (window._ === undefined) window._ = require('underscore');
 
 /*
  * Load Moment.js, used for date formatting and presentation.
  */
-window.moment = require('moment');
+if (window.moment === undefined) window.moment = require('moment');
 
 /*
  * Load jQuery and Bootstrap jQuery, used for front-end interaction.
  */
-window.$ = window.jQuery = require('jquery');
+if (window.$ === undefined || window.jQuery === undefined) window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass/assets/javascripts/bootstrap');
+
 
