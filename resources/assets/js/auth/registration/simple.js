@@ -62,6 +62,24 @@ Vue.component('spark-simple-registration-screen', {
                 .then(function (response) {
                     window.location = response.path;
                 });
+        },
+
+
+        /**
+         * Determine if the form has an error for the field.
+         */
+        hasError: function (form, field) {
+            return _.indexOf(_.keys(form.fullErrors), field) > -1;
+        },
+
+
+        /**
+         * Get the first error for the given field if it exists.
+         */
+        getError: function (form, field) {
+            if (this.hasError(form, field)) {
+                return form.fullErrors[field][0];
+            }
         }
     }
 });
