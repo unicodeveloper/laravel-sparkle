@@ -1,5 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Register</div>
+
 	<div class="panel-body">
 		<spark-error-alert :form="registerForm"></spark-error-alert>
 
@@ -38,7 +39,7 @@
             </spark-password>
 
 			<div class="form-group" :class="{'has-error': hasError(registerForm, 'terms')}">
-				<div class="col-sm-6 col-sm-offset-3">
+				<div class="col-sm-6 col-sm-offset-4">
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" v-model="registerForm.terms"> I Accept The <a href="/terms" target="_blank">Terms Of Service</a>
@@ -52,7 +53,7 @@
 			</div>
 
 			<div class="form-group">
-				<div class="col-sm-6 col-sm-offset-3">
+				<div class="col-sm-6 col-sm-offset-4">
 					<button type="submit" class="btn btn-primary" @click.prevent="register" :disabled="registerForm.busy">
 						<span v-if="registerForm.busy">
 							<i class="fa fa-btn fa-spinner fa-spin"></i> Registering

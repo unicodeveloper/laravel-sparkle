@@ -11,14 +11,14 @@
 	<div id="spark-register-screen" class="container-fluid spark-screen">
 		<!-- Invitation -->
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-8 col-md-offset-2">
 				@include('spark::auth.registration.subscription.invitation')
 			</div>
 		</div>
 
 		<!-- Basic Information -->
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-8 col-md-offset-2">
 				@include('spark::auth.registration.simple.basics')
 			</div>
 		</div>
