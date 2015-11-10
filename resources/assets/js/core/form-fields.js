@@ -10,7 +10,7 @@ Vue.component('spark-text', {
     mixins: [Spark.helpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
-    <label class="col-md-3 control-label">{{ display }}</label>\
+    <label class="col-md-4 control-label">{{ display }}</label>\
     <div class="col-md-6">\
         <input type="text" class="form-control" v-model="input">\
         <span class="help-block" v-show="hasError(form, name)">\
@@ -33,7 +33,7 @@ Vue.component('spark-email', {
     mixins: [Spark.helpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
-    <label class="col-md-3 control-label">{{ display }}</label>\
+    <label class="col-md-4 control-label">{{ display }}</label>\
     <div class="col-md-6">\
         <input type="email" class="form-control" v-model="input">\
         <span class="help-block" v-show="hasError(form, name)">\
@@ -56,7 +56,7 @@ Vue.component('spark-password', {
     mixins: [Spark.helpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
-    <label class="col-md-3 control-label">{{ display }}</label>\
+    <label class="col-md-4 control-label">{{ display }}</label>\
     <div class="col-md-6">\
         <input type="password" class="form-control" v-model="input">\
         <span class="help-block" v-show="hasError(form, name)">\
@@ -79,7 +79,7 @@ Vue.component('spark-select', {
     mixins: [Spark.helpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
-    <label class="col-md-3 control-label">{{ display }}</label>\
+    <label class="col-md-4 control-label">{{ display }}</label>\
     <div class="col-md-8">\
         <select class="form-control" v-model="input">\
             <option v-for="item in items" :value="item.value">\

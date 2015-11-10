@@ -23,7 +23,7 @@
                 </spark-email>
 
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary" @click.prevent="updateProfile" :disabled="updateProfileForm.busy">
                             <span v-if="updateProfileForm.busy">
                                 <i class="fa fa-btn fa-spinner fa-spin"></i> Updating

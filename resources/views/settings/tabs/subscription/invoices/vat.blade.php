@@ -17,14 +17,15 @@
 
 		<form class="form-horizontal" role="form">
 			<div class="form-group">
-				<label for="key" class="col-md-3 control-label">Text</label>
+				<label for="key" class="col-md-4 control-label">Extra Billing Information</label>
+
 				<div class="col-md-6">
 					<textarea class="form-control" rows="7" v-model="extraBillingInfoForm.text"></textarea>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<div class="col-md-offset-3 col-md-6">
+				<div class="col-md-offset-4 col-md-6">
 					<button type="submit" class="btn btn-primary" @click.prevent="updateExtraBillingInfo" :disabled="extraBillingInfoForm.busy">
 						<span v-if="extraBillingInfoForm.busy">
 							<i class="fa fa-btn fa-spin fa-spinner "></i> Updating

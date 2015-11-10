@@ -41,7 +41,7 @@
 
             <form class="form-horizontal" role="form">
                 <div class="form-group" :class="{'has-error': hasError(cardForm, 'number')}">
-                    <label for="number" class="col-md-3 control-label">Card Number</label>
+                    <label for="number" class="col-md-4 control-label">Card Number</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control spark-first-field" name="number" data-stripe="number" v-model="cardForm.number">
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="cvc" class="col-md-3 control-label">Security Code</label>
+                    <label for="cvc" class="col-md-4 control-label">Security Code</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="cvc" data-stripe="cvc" v-model="cardForm.cvc">
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Expiration</label>
+                    <label class="col-md-4 control-label">Expiration</label>
 
                     <div class="col-md-3">
                         <input type="text" class="form-control" name="month" placeholder="MM" maxlength="2" data-stripe="exp-month" v-model="cardForm.month">
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="zip" class="col-md-3 control-label">ZIP / Postal Code</label>
+                    <label for="zip" class="col-md-4 control-label">ZIP / Postal Code</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control" name="zip" v-model="cardForm.zip">
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="form-group" :class="{'has-error': hasError(subscribeForm, 'terms')}">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-4">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" v-model="subscribeForm.terms">
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary" @click.prevent="subscribe" :disabled="subscribeForm.busy">
                             <span v-if="subscribeForm.busy">
                                 <i class="fa fa-btn fa-spinner fa-spin"></i> Subscribing

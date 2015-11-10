@@ -6,6 +6,7 @@
 		<form class="form-horizontal" role="form">
 			@if (Spark::usingTeams())
                 <spark-text :display="'Team Name'"
+                            :columns="4"
                             :form="registerForm"
                             :name="'team_name'"
                             :input.sync="registerForm.team_name">
