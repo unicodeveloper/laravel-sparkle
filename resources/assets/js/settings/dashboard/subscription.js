@@ -8,7 +8,7 @@ var settingsSubscriptionScreenForms = {
 };
 
 Vue.component('spark-settings-subscription-screen', {
-    mixins: [Spark.helpers],
+    mixins: [Spark.formHelpers],
 
     /*
      * Bootstrap the component. Load the initial data.

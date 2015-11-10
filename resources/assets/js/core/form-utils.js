@@ -82,7 +82,7 @@ _.extend(Spark, {
     },
 
 
-    helpers: {
+    formHelpers: {
             methods: {
                 /**
                  * Determine if the form has an error for the field.

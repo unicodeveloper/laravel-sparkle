@@ -1,5 +1,5 @@
 Vue.component('spark-settings-teams-screen', {
-    mixins: [Spark.helpers],
+    mixins: [Spark.formHelpers],
 
     /*
      * Bootstrap the component. Load the initial data.

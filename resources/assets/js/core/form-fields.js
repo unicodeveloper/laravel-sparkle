@@ -7,7 +7,7 @@ Vue.component('spark-text', {
     /**
      * Include the helper methods in the component.
      */
-    mixins: [Spark.helpers],
+    mixins: [Spark.formHelpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-4 control-label">{{ display }}</label>\
@@ -30,7 +30,7 @@ Vue.component('spark-email', {
     /**
      * Include the helper methods in the component.
      */
-    mixins: [Spark.helpers],
+    mixins: [Spark.formHelpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-4 control-label">{{ display }}</label>\
@@ -53,7 +53,7 @@ Vue.component('spark-password', {
     /**
      * Include the helper methods in the component.
      */
-    mixins: [Spark.helpers],
+    mixins: [Spark.formHelpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-4 control-label">{{ display }}</label>\
@@ -76,7 +76,7 @@ Vue.component('spark-select', {
     /**
      * Include the helper methods in the component.
      */
-    mixins: [Spark.helpers],
+    mixins: [Spark.formHelpers],
 
     template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-4 control-label">{{ display }}</label>\
