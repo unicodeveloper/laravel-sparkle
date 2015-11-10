@@ -1,4 +1,6 @@
 Vue.component('spark-subscription-register-screen', {
+    mixins: [Spark.helpers],
+
     /*
      * Bootstrap the component. Load the initial data.
      */
@@ -379,24 +381,6 @@ Vue.component('spark-subscription-register-screen', {
                     return 'col-md-3';
                 default:
                     console.error("Spark only supports up to 4 plans per interval.");
-            }
-        },
-
-
-        /**
-         * Determine if the form has an error for the field.
-         */
-        hasError: function (form, field) {
-            return _.indexOf(_.keys(form.fullErrors), field) > -1;
-        },
-
-
-        /**
-         * Get the first error for the given field if it exists.
-         */
-        getError: function (form, field) {
-            if (this.hasError(form, field)) {
-                return form.fullErrors[field][0];
             }
         }
     }

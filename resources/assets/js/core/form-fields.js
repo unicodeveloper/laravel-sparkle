@@ -1,22 +1,3 @@
-var errorHelperMethods = {
-    /**
-     * Determine if the form has an error for the field.
-     */
-    hasError: function () {
-        return _.indexOf(_.keys(this.form.fullErrors), this.name) > -1;
-    },
-
-
-    /**
-     * Get the first error for the given field if it exists.
-     */
-    getError: function () {
-        if (this.hasError()) {
-            return this.form.fullErrors[this.name][0];
-        }
-    }
-};
-
 /**
  * Text field input component for Bootstrap.
  */
@@ -26,14 +7,14 @@ Vue.component('spark-text', {
     /**
      * Include the helper methods in the component.
      */
-    methods: errorHelperMethods,
+    mixins: [Spark.helpers],
 
-    template: '<div class="form-group" :class="{\'has-error\': hasError()}">\
+    template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-3 control-label">{{ display }}</label>\
     <div class="col-md-6">\
         <input type="text" class="form-control" v-model="input">\
-        <span class="help-block" v-show="hasError()">\
-            <strong>{{ getError() }}</strong>\
+        <span class="help-block" v-show="hasError(form, name)">\
+            <strong>{{ getError(form, name) }}</strong>\
         </span>\
     </div>\
 </div>'
@@ -49,14 +30,14 @@ Vue.component('spark-email', {
     /**
      * Include the helper methods in the component.
      */
-    methods: errorHelperMethods,
+    mixins: [Spark.helpers],
 
-    template: '<div class="form-group" :class="{\'has-error\': hasError()}">\
+    template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-3 control-label">{{ display }}</label>\
     <div class="col-md-6">\
         <input type="email" class="form-control" v-model="input">\
-        <span class="help-block" v-show="hasError()">\
-            <strong>{{ getError() }}</strong>\
+        <span class="help-block" v-show="hasError(form, name)">\
+            <strong>{{ getError(form, name) }}</strong>\
         </span>\
     </div>\
 </div>'
@@ -72,14 +53,14 @@ Vue.component('spark-password', {
     /**
      * Include the helper methods in the component.
      */
-    methods: errorHelperMethods,
+    mixins: [Spark.helpers],
 
-    template: '<div class="form-group" :class="{\'has-error\': hasError()}">\
+    template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-3 control-label">{{ display }}</label>\
     <div class="col-md-6">\
         <input type="password" class="form-control" v-model="input">\
-        <span class="help-block" v-show="hasError()">\
-            <strong>{{ getError() }}</strong>\
+        <span class="help-block" v-show="hasError(form, name)">\
+            <strong>{{ getError(form, name) }}</strong>\
         </span>\
     </div>\
 </div>'
@@ -95,9 +76,9 @@ Vue.component('spark-select', {
     /**
      * Include the helper methods in the component.
      */
-    methods: errorHelperMethods,
+    mixins: [Spark.helpers],
 
-    template: '<div class="form-group" :class="{\'has-error\': hasError()}">\
+    template: '<div class="form-group" :class="{\'has-error\': hasError(form, name)}">\
     <label class="col-md-3 control-label">{{ display }}</label>\
     <div class="col-md-8">\
         <select class="form-control" v-model="input">\
@@ -105,8 +86,8 @@ Vue.component('spark-select', {
                 {{ item.text }}\
             </option>\
         </select>\
-        <span class="help-block" v-show="hasError()">\
-            <strong>{{ getError() }}</strong>\
+        <span class="help-block" v-show="hasError(form, name)">\
+            <strong>{{ getError(form, name) }}</strong>\
         </span>\
     </div>\
 </div>'
