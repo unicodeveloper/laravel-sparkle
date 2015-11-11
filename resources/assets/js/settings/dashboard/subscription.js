@@ -461,6 +461,7 @@ Vue.component('spark-settings-subscription-screen', {
                 })
                 .error(function (errors) {
                     this.updateCardForm.updating = false;
+
                     Spark.setErrorsOnForm(this.updateCardForm, errors);
                 });
         },

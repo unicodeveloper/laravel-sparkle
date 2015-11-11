@@ -74,6 +74,8 @@ _.extend(Spark, {
      * Set errors on the form. Flatten the errors if necessary.
      */
     setErrorsOnForm: function (form, errors) {
+        form.fullErrors = errors;
+
         if (typeof errors === 'object') {
             form.errors = _.flatten(_.toArray(errors));
         } else {

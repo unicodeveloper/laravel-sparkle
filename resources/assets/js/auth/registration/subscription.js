@@ -360,7 +360,6 @@ Vue.component('spark-subscription-register-screen', {
                 .error(function(errors) {
                     this.registerForm.busy = false;
 
-                    this.registerForm.fullErrors = errors;
                     Spark.setErrorsOnForm(this.registerForm, errors);
                 });
         },
