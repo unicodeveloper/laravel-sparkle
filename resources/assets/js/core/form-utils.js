@@ -82,6 +82,9 @@ _.extend(Spark, {
     },
 
 
+    /**
+     * These are mixed into the components for inline error messages.
+     */
     formHelpers: {
             methods: {
                 /**
