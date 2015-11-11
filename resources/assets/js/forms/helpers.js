@@ -26,85 +26,11 @@ window.SparkForm = function (data) {
 };
 
 /**
- * Extend Spark with helpful form helpers.
+ * Add the HTTP form helpers to the Spark object.
  */
-_.extend(Spark, {
-    post: function (uri, form) {
-        return Spark.sendForm('post', uri, form);
-    },
+_.extend(Spark, require('./http'));
 
-
-    put: function (uri, form) {
-        return Spark.sendForm('put', uri, form);
-    },
-
-
-    delete: function (uri, form) {
-        return Spark.sendForm('delete', uri, form);
-    },
-
-
-    /**
-     * Send the form to the back-end server. Perform common form tasks.
-     *
-     * This function will automatically clear old errors, update "busy" status, etc.
-     */
-    sendForm: function (method, uri, form) {
-        return new Promise(function (resolve, reject) {
-            form.startProcessing();
-
-            Vue.http[method](uri, form)
-                .success(function (response) {
-                    form.finishProcessing();
-
-                    resolve(response);
-                })
-                .error(function (errors) {
-                    form.fullErrors = errors;
-                    Spark.setErrorsOnForm(form, errors);
-                    form.busy = false;
-
-                    reject(errors);
-                });
-        });
-    },
-
-
-    /**
-     * Set errors on the form. Flatten the errors if necessary.
-     */
-    setErrorsOnForm: function (form, errors) {
-        form.fullErrors = errors;
-
-        if (typeof errors === 'object') {
-            form.errors = _.flatten(_.toArray(errors));
-        } else {
-            form.errors.push('Something went wrong. Please try again.');
-        }
-    },
-
-
-    /**
-     * These are mixed into the components for inline error messages.
-     */
-    formHelpers: {
-            methods: {
-                /**
-                 * Determine if the form has an error for the field.
-                 */
-                hasError: function (form, field) {
-                    return _.indexOf(_.keys(form.fullErrors), field) > -1;
-                },
-
-
-                /**
-                 * Get the first error for the given field if it exists.
-                 */
-                getError: function (form, field) {
-                    if (this.hasError(form, field)) {
-                        return form.fullErrors[field][0];
-                    }
-                }
-            }
-    }
-});
+/**
+ * Add the error message helpers to the Spark object.
+ */
+_.extend(Spark, require('./errors'));
