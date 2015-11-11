@@ -1,3 +1,6 @@
+/**
+ * Load all of the core Spark Vue components.
+ */
 require('./../common/errors');
 require('./../nav');
 require('./../auth/registration/simple');
