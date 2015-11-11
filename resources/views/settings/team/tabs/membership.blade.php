@@ -21,7 +21,7 @@
                         </spark-email>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
+                            <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary" @click.prevent="sendInvite" :disabled="sendInviteForm.busy">
                                     <span v-if="sendInviteForm.busy">
                                         <i class="fa fa-btn fa-spinner fa-spin"></i> Sending

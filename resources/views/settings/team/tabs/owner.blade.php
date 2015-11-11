@@ -15,7 +15,7 @@
                 </spark-text>
 
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-4">
                         <button type="submit" class="btn btn-primary" @click.prevent="updateTeam" :disabled="updateTeamForm.busy">
                             <span v-if="updateTeamForm.busy">
                                 <i class="fa fa-btn fa-spinner fa-spin"></i> Updating

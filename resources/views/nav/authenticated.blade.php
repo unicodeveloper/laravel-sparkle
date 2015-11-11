@@ -24,7 +24,7 @@
 
 			<!-- Right Side Of Navbar -->
 			<ul class="nav navbar-nav navbar-right">
-				@include('spark::nav.dropdown')
+				@include('spark::nav.settings')
 			</ul>
 		</div>
 	</div>
