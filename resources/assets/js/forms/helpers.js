@@ -1,6 +1,5 @@
-
 /**
- * SparkForm helper class. Used to set common properties.
+ * SparkForm helper class. Used to set common properties on all forms.
  */
 window.SparkForm = function (data) {
     var form = this;
@@ -26,11 +25,12 @@ window.SparkForm = function (data) {
 };
 
 /**
- * Add the HTTP form helpers to the Spark object.
+ * Add additional form helpers to the Spark object.
  */
 _.extend(Spark, require('./http'));
+_.extend(Spark, require('./errors'));
 
 /**
- * Add the error message helpers to the Spark object.
+ * Define the Spark form input components.
  */
-_.extend(Spark, require('./errors'));
+require('./components');
