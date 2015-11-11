@@ -13,7 +13,7 @@
 @section('content')
 <!-- Your Settings Dashboard -->
 <spark-settings-screen inline-template>
-	<div class="container spark-screen">
+	<div id="spark-settings-screen" class="container spark-screen">
 		<div class="row">
 			<!-- Tabs -->
 			<div class="col-md-4">

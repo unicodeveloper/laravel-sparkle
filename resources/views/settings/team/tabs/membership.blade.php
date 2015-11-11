@@ -1,6 +1,6 @@
 <!-- Main Content -->
 <spark-team-settings-membership-screen inline-template>
-    <div>
+    <div id="spark-team-settings-membership-screen">
         <div v-if="everythingIsLoaded">
             <!-- Invite New Members -->
             <div class="panel panel-default" v-if="userOwns(team)">
