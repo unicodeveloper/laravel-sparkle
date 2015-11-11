@@ -73,7 +73,7 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        return view('spark::auth.authenticate');
+        return view('spark::auth.login');
     }
 
     /**
