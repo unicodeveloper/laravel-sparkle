@@ -28,5 +28,3 @@ if (window.moment === undefined) window.moment = require('moment');
  */
 if (window.$ === undefined || window.jQuery === undefined) window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass/assets/javascripts/bootstrap');
-
-

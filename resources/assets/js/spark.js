@@ -1,8 +1,8 @@
 /**
  * Load the Spark form utilities.
  */
-require('./core/form-utils');
-require('./core/form-fields');
+require('./forms/helpers');
+require('./forms/components');
 
 /*
  * Load the Spark components.
