@@ -1,5 +1,18 @@
 <div class="panel panel-default" v-if="user.stripe_active">
-    <div class="panel-heading">Update Card</div>
+    <div class="panel-heading">
+        <div class="pull-left">
+            Update Card
+        </div>
+
+        <div class="pull-right">
+            <span v-if="user.last_four">
+                <i class="fa fa-btn fa-cc-@{{ creditCardBrandIcon }}"></i>
+                ************@{{ user.last_four }}
+            </span>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
 
     <div class="panel-body">
         <spark-error-alert :form="updateCardForm"></spark-error-alert>

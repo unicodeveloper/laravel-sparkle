@@ -44,6 +44,7 @@ Vue.component('spark-settings-subscription-screen', {
         return {
             user: null,
             currentCoupon: null,
+            creditCardBrand: null,
 
             plans: [],
 
@@ -268,6 +269,33 @@ Vue.component('spark-settings-subscription-screen', {
          */
         currentCouponDisplayExpiresOn: function () {
             return moment(this.currentCoupon.expiresOn).format('MMMM Do, YYYY');
+        },
+
+
+        /**
+         * Get the proper brand icon for the customer's credit card.
+         */
+        creditCardBrandIcon: function () {
+            if (! this.creditCardBrand) {
+                return 'stripe';
+            }
+
+            switch (this.creditCardBrand) {
+                case 'American Express':
+                    return 'amex';
+                case 'Diners Club':
+                    return 'diners-club';
+                case 'Discover':
+                    return 'discover';
+                case 'JCB':
+                    return 'jcb';
+                case 'MasterCard':
+                    return 'mastercard';
+                case 'Visa':
+                    return 'visa';
+                default:
+                    return 'stripe';
+            }
         }
     },
 
@@ -285,6 +313,10 @@ Vue.component('spark-settings-subscription-screen', {
                 this.getCoupon();
             }
 
+            if (this.user.stripe_active) {
+                this.getCreditCardBrand();
+            }
+
             return true;
         }
     },
@@ -298,6 +330,18 @@ Vue.component('spark-settings-subscription-screen', {
             this.$http.get('spark/api/subscriptions/user/coupon')
                 .success(function (coupon) {
                     this.currentCoupon = coupon;
+                });
+        },
+
+
+
+        /**
+         * Get the credit card brand for the customer.
+         */
+        getCreditCardBrand: function () {
+            this.$http.get('spark/api/subscriptions/user/card/brand')
+                .success(function (response) {
+                    this.creditCardBrand = response.brand;
                 });
         },
 

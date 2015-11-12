@@ -81,6 +81,7 @@ if (count(Spark::plans()) > 0) {
     $router->get('spark/api/subscriptions/plans', 'API\SubscriptionController@getPlans');
     $router->get('spark/api/subscriptions/coupon/{code}', 'API\SubscriptionController@getCoupon');
     $router->get('spark/api/subscriptions/user/coupon', 'API\SubscriptionController@getCouponForUser');
+    $router->get('spark/api/subscriptions/user/card/brand', 'API\SubscriptionController@getCreditCardBrandForUser');
 }
 
 // Stripe Routes...
