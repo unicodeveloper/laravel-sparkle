@@ -13,7 +13,7 @@
  | require your own custom-built components to manage these screens.
  */
 
-require('laravel-spark/settings/dashboard/profile')
+require('laravel-spark/settings/dashboard/profile/basics')
 require('laravel-spark/settings/dashboard/security/password')
 require('laravel-spark/settings/dashboard/security/two-factor')
 

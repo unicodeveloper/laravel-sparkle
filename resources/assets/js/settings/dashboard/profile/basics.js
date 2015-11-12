@@ -1,4 +1,4 @@
-Vue.component('spark-settings-profile-screen', {
+Vue.component('spark-settings-profile-basics-screen', {
     /*
      * Bootstrap the component. Load the initial data.
      */
@@ -14,7 +14,7 @@ Vue.component('spark-settings-profile-screen', {
         return {
             user: null,
 
-            updateProfileForm: new SparkForm({
+            updateProfileBasicsForm: new SparkForm({
                 name: '',
                 email: '',
             })
@@ -29,7 +29,7 @@ Vue.component('spark-settings-profile-screen', {
         userRetrieved: function (user) {
             this.user = user;
 
-            this.updateProfileFormForNewUser(user);
+            this.updateProfileBasicsFormForNewUser(user);
 
             return true;
         }
@@ -40,19 +40,19 @@ Vue.component('spark-settings-profile-screen', {
         /**
          * Update the user profile form with new user information.
          */
-        updateProfileFormForNewUser: function (user) {
-            this.updateProfileForm.name = user.name;
-            this.updateProfileForm.email = user.email;
+        updateProfileBasicsFormForNewUser: function (user) {
+            this.updateProfileBasicsForm.name = user.name;
+            this.updateProfileBasicsForm.email = user.email;
         },
 
 
         /**
          * Update the user's profile information.
          */
-        updateProfile: function () {
+        updateProfileBasics: function () {
             var self = this;
 
-            Spark.put('/settings/user', this.updateProfileForm)
+            Spark.put('/settings/user', this.updateProfileBasicsForm)
                 .then(function () {
                     self.$dispatch('updateUser');
                 });
