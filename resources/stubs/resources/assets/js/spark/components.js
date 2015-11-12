@@ -17,5 +17,5 @@ require('laravel-spark/settings/dashboard/profile/basics')
 require('laravel-spark/settings/dashboard/security/password')
 require('laravel-spark/settings/dashboard/security/two-factor')
 
-require('laravel-spark/settings/team/owner')
+require('laravel-spark/settings/team/owner/basics')
 require('laravel-spark/settings/team/membership/edit-team-member')
