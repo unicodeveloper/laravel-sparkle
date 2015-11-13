@@ -41,12 +41,13 @@ class DashboardTabs extends Tabs
     /**
      * Get the tab configuration for the "subscription" tab.
      *
+     * @param  bool  $force
      * @return \Laravel\Spark\Ux\Settings\Tab|null
      */
     public function subscription($force = false)
     {
-        if (count(Spark::plans()->paid()) > 0 || $force) {
-            return new Tab('Subscription', 'spark::settings.tabs.subscription', 'fa-credit-card');
-        }
+        return new Tab('Subscription', 'spark::settings.tabs.subscription', 'fa-credit-card', function () use ($force) {
+            return count(Spark::plans()->paid()) > 0 || $force;
+        });
     }
 }

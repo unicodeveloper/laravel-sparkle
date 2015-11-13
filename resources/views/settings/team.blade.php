@@ -17,7 +17,7 @@
 						Team Settings (@{{ team.name }})
 					</div>
 
-					<div class="panel-heading" v-if=" ! team">
+					<div class="panel-heading" v-else>
 						Loading &nbsp;&nbsp; <i class="fa fa-spinner fa-spin"></i>
 					</div>
 
