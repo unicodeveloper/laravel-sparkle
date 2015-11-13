@@ -53,16 +53,6 @@ module.exports = {
             this.getTeams();
 
             return true;
-        },
-
-
-        /**
-         * Receive an updated team list from a child component.
-         */
-        updateTeams: function () {
-            this.getTeams();
-
-            return true;
         }
     },
 
