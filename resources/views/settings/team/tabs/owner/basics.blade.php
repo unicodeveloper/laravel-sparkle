@@ -3,6 +3,8 @@
         <div class="panel-heading">The Basics</div>
 
         <div class="panel-body">
+            <spark-error-alert :form="updateTeamBasicsForm"></spark-error-alert>
+
             <div class="alert alert-success" v-if="updateTeamBasicsForm.successful">
                 <strong>Great!</strong> Your team was successfully updated.
             </div>

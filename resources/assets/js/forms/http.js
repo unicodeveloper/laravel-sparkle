@@ -33,8 +33,7 @@ module.exports = {
                     resolve(response);
                 })
                 .error(function (errors) {
-                    form.fullErrors = errors;
-                    Spark.setErrorsOnForm(form, errors);
+                    form.errors.set(errors);
                     form.busy = false;
 
                     reject(errors);

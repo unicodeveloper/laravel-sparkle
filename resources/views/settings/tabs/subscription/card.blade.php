@@ -17,12 +17,12 @@
     <div class="panel-body">
         <spark-error-alert :form="updateCardForm"></spark-error-alert>
 
-        <div class="alert alert-success" v-if="updateCardForm.updated">
+        <div class="alert alert-success" v-if="updateCardForm.successful">
             <strong>Done!</strong> Your card has been updated.
         </div>
 
         <form class="form-horizontal" role="form">
-            <div class="form-group" :class="{'has-error': hasError(updateCardForm, 'number')}">
+            <div class="form-group" :class="{'has-error': updateCardForm.errors.has('number')}">
                 <label for="number" class="col-md-4 control-label">Card Number</label>
 
                 <div class="col-md-6">
@@ -33,8 +33,8 @@
                         placeholder="************@{{ user.last_four }}"
                         v-model="updateCardForm.number">
 
-                    <span class="help-block" v-show="hasError(updateCardForm, 'number')">
-                        <strong>@{{ getError(updateCardForm, 'number') }}</strong>
+                    <span class="help-block" v-show="updateCardForm.errors.has('number')">
+                        <strong>@{{ updateCardForm.errors.get('number') }}</strong>
                     </span>
                 </div>
             </div>
@@ -69,8 +69,8 @@
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary" @click.prevent="updateCard" :disabled="updateCardForm.updating">
-                        <span v-if="updateCardForm.updating">
+                    <button type="submit" class="btn btn-primary" @click.prevent="updateCard" :disabled="updateCardForm.busy">
+                        <span v-if="updateCardForm.busy">
                             <i class="fa fa-btn fa-spinner fa-spin"></i> Updating
                         </span>
 

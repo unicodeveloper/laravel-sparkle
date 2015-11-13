@@ -40,14 +40,14 @@
             <spark-error-alert :form="cardForm"></spark-error-alert>
 
             <form class="form-horizontal" role="form">
-                <div class="form-group" :class="{'has-error': hasError(cardForm, 'number')}">
+                <div class="form-group" :class="{'has-error': cardForm.errors.has('number')}">
                     <label for="number" class="col-md-4 control-label">Card Number</label>
 
                     <div class="col-md-6">
                         <input type="text" class="form-control spark-first-field" name="number" data-stripe="number" v-model="cardForm.number">
 
-                        <span class="help-block" v-show="hasError(cardForm, 'number')">
-                            <strong>@{{ getError(cardForm, 'number') }}</strong>
+                        <span class="help-block" v-show="cardForm.errors.has('number')">
+                            <strong>@{{ cardForm.errors.get('number') }}</strong>
                         </span>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                <div class="form-group" :class="{'has-error': hasError(subscribeForm, 'terms')}">
+                <div class="form-group" :class="{'has-error': subscribeForm.errors.has('terms')}">
                     <div class="col-md-6 col-md-offset-4">
                         <div class="checkbox">
                             <label>
@@ -89,8 +89,8 @@
                             </label>
                         </div>
 
-                        <span class="help-block" v-show="hasError(subscribeForm, 'terms')">
-                            <strong>@{{ getError(subscribeForm, 'terms') }}</strong>
+                        <span class="help-block" v-show="subscribeForm.errors.has('terms')">
+                            <strong>@{{ subscribeForm.errors.get('terms') }}</strong>
                         </span>
                     </div>
                 </div>

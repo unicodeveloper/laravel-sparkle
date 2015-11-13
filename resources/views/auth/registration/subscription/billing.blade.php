@@ -18,14 +18,14 @@
 		<spark-error-alert :form="cardForm"></spark-error-alert>
 
 		<form class="form-horizontal" role="form">
-			<div class="form-group" :class="{'has-error': hasError(cardForm, 'number')}">
+			<div class="form-group" :class="{'has-error': cardForm.errors.has('number')}">
 				<label for="number" class="col-md-4 control-label">Card Number</label>
 
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="number" data-stripe="number" v-model="cardForm.number">
 
-                    <span class="help-block" v-show="hasError(cardForm, 'number')">
-                        <strong>@{{ getError(cardForm, 'number') }}</strong>
+                    <span class="help-block" v-show="cardForm.errors.has('number')">
+                        <strong>@{{ cardForm.errors.get('number') }}</strong>
                     </span>
 				</div>
 			</div>
@@ -57,15 +57,15 @@
 				</div>
 			</div>
 
-			<div class="form-group" :class="{'has-error': hasError(registerForm, 'terms')}">
+			<div class="form-group" :class="{'has-error': registerForm.errors.has('terms')}">
 				<div class="col-sm-6 col-sm-offset-4">
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" v-model="registerForm.terms">
 							I Accept The <a href="/terms" target="_blank">Terms Of Service</a>
 
-		                    <span class="help-block" v-show="hasError(registerForm, 'terms')">
-		                        <strong>@{{ getError(registerForm, 'terms') }}</strong>
+		                    <span class="help-block" v-show="registerForm.errors.has('terms')">
+		                        <strong>@{{ registerForm.errors.get('terms') }}</strong>
 		                    </span>
 						</label>
 					</div>

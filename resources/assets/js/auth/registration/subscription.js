@@ -1,6 +1,4 @@
 Vue.component('spark-subscription-register-screen', {
-    mixins: [Spark.formHelpers],
-
     /*
      * Bootstrap the component. Load the initial data.
      */
@@ -301,11 +299,8 @@ Vue.component('spark-subscription-register-screen', {
         register: function() {
             var self = this;
 
-            this.cardForm.fullErrors = {};
-            this.cardForm.errors = [];
-
-            this.registerForm.fullErrors = {};
-            this.registerForm.errors = [];
+            this.cardForm.errors.forget();
+            this.registerForm.errors.forget();
 
             this.registerForm.busy = true;
 
@@ -329,8 +324,7 @@ Vue.component('spark-subscription-register-screen', {
 
             Stripe.card.createToken(payload, function (status, response) {
                 if (response.error) {
-                    self.cardForm.fullErrors = {number: [response.error.message]};
-                    self.cardForm.errors.push(response.error.message);
+                    self.cardForm.errors.set({number: [response.error.message]})
 
                     self.registerForm.busy = false;
                 } else {
@@ -360,7 +354,7 @@ Vue.component('spark-subscription-register-screen', {
                 .error(function(errors) {
                     this.registerForm.busy = false;
 
-                    Spark.setErrorsOnForm(this.registerForm, errors);
+                    this.registerForm.errors.set(errors);
                 });
         },
 

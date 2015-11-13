@@ -1,6 +1,4 @@
 Vue.component('spark-simple-registration-screen', {
-    mixins: [Spark.formHelpers],
-
     /*
      * Bootstrap the component. Load the initial data.
      */

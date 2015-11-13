@@ -4,10 +4,10 @@
 Vue.component('spark-errors', {
     props: ['form'],
 
-    template: "<div><div class='alert alert-danger' v-if='form.errors && form.errors.length > 0'>\
+    template: "<div><div class='alert alert-danger' v-if='form.errors && form.errors.hasErrors()'>\
                 <strong>Whoops!</strong> There were some problems with your input.<br><br>\
                 <ul>\
-                    <li v-for='error in form.errors'>\
+                    <li v-for='error in form.errors.flatten()'>\
                         {{ error }}\
                     </li>\
                 </ul>\
@@ -18,7 +18,7 @@ Vue.component('spark-errors', {
 Vue.component('spark-error-alert', {
     props: ['form'],
 
-    template: "<div><div class='alert alert-danger' v-if='form.errors && form.errors.length > 0'>\
+    template: "<div><div class='alert alert-danger' v-if='form.errors && form.errors.hasErrors()'>\
                 <strong>Whoops!</strong> There were some problems with your input.\
             </div></div>"
 });

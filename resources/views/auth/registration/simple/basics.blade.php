@@ -38,14 +38,14 @@
                         :input.sync="registerForm.password_confirmation">
             </spark-password>
 
-			<div class="form-group" :class="{'has-error': hasError(registerForm, 'terms')}">
+			<div class="form-group" :class="{'has-error': registerForm.errors.has('terms')}">
 				<div class="col-sm-6 col-sm-offset-4">
 					<div class="checkbox">
 						<label>
 							<input type="checkbox" v-model="registerForm.terms"> I Accept The <a href="/terms" target="_blank">Terms Of Service</a>
 
-                            <span class="help-block" v-show="hasError(registerForm, 'terms')">
-                                <strong>@{{ getError(registerForm, 'terms') }}</strong>
+                            <span class="help-block" v-show="registerForm.errors.has('terms')">
+                                <strong>@{{ registerForm.errors.get('terms') }}</strong>
                             </span>
 						</label>
 					</div>

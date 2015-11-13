@@ -1,39 +1,69 @@
-module.exports = {
-    /**
-     * Set errors on the form. Flatten the errors if necessary.
-     */
-    setErrorsOnForm: function (form, errors) {
-        form.fullErrors = errors;
+/**
+ * Spark form error collection class.
+ */
+window.SparkFormErrors = function () {
+    var self = this;
 
-        if (typeof errors === 'object') {
-            form.errors = _.flatten(_.toArray(errors));
-        } else {
-            form.errors.push('Something went wrong. Please try again.');
+    this.errors = {};
+
+    /**
+     * Determine if the collection has any errors.
+     */
+    this.hasErrors = function () {
+        return ! _.isEmpty(self.errors);
+    };
+
+
+    /**
+     * Determine if the collection has errors for a given field.
+     */
+    this.has = function (field) {
+        return _.indexOf(_.keys(self.errors), field) > -1;
+    };
+
+
+    /**
+     * Get all of the raw errors for the collection.
+     */
+    this.all = function () {
+        return self.errors;
+    };
+
+
+    /**
+     * Get all of the errors for the collection in a flat array.
+     */
+    this.flatten = function () {
+        return _.flatten(_.toArray(self.errors));
+    };
+
+
+    /**
+     * Get the first error message for a given field.
+     */
+    this.get = function (field) {
+        if (self.has(field)) {
+            return self.errors[field][0];
         }
-    },
+    };
 
 
     /**
-     * These are mixed into the components for inline error messages.
+     * Set the raw errors for the collection.
      */
-    formHelpers: {
-            methods: {
-                /**
-                 * Determine if the form has an error for the field.
-                 */
-                hasError: function (form, field) {
-                    return _.indexOf(_.keys(form.fullErrors), field) > -1;
-                },
+    this.set = function (errors) {
+        if (typeof errors === 'object') {
+            self.errors = errors;
+        } else {
+            self.errors = {'field': ['Something went wrong. Please try again.']};
+        }
+    };
 
 
-                /**
-                 * Get the first error for the given field if it exists.
-                 */
-                getError: function (form, field) {
-                    if (this.hasError(form, field)) {
-                        return form.fullErrors[field][0];
-                    }
-                }
-            }
-    }
+    /**
+     * Forget all of the errors currently in the collection.
+     */
+    this.forget = function () {
+        self.errors = {};
+    };
 };

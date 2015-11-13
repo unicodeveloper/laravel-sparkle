@@ -1,15 +1,12 @@
 var settingsSubscriptionScreenForms = {
     updateCard: function () {
-        return {
-            number: '', cvc: '', month: '', year: '', zip: '',
-            fullErrors: {}, errors: [], updating: false, updated: false
-        };
+        return new SparkForm({
+            number: '', cvc: '', month: '', year: '', zip: ''
+        });
     }
 };
 
 Vue.component('spark-settings-subscription-screen', {
-    mixins: [Spark.formHelpers],
-
     /*
      * Bootstrap the component. Load the initial data.
      */
@@ -363,11 +360,8 @@ Vue.component('spark-settings-subscription-screen', {
         subscribe: function () {
             var self = this;
 
-            this.cardForm.fullErrors = {};
-            this.cardForm.errors = [];
-
-            this.subscribeForm.fullErrors = {};
-            this.subscribeForm.errors = [];
+            this.cardForm.errors.forget();
+            this.subscribeForm.errors.forget();
 
             this.subscribeForm.busy = true;
 
@@ -387,8 +381,7 @@ Vue.component('spark-settings-subscription-screen', {
 
             Stripe.card.createToken(payload, function (status, response) {
                 if (response.error) {
-                    self.cardForm.fullErrors = {number: [response.error.message]};
-                    self.cardForm.errors = [response.error.message];
+                    self.cardForm.errors.set({number: [response.error.message]});
 
                     self.subscribeForm.busy = false;
                 } else {
@@ -424,8 +417,8 @@ Vue.component('spark-settings-subscription-screen', {
          * Show the modal screen to select another subscription plan.
          */
         confirmPlanChange: function() {
-            this.changePlanForm.errors = [];
-            this.changePlanForm.changing = false;
+            this.changePlanForm.busy = false;
+            this.changePlanForm.errors.forget();
 
             $('#modal-change-plan').modal('show');
 
@@ -461,9 +454,10 @@ Vue.component('spark-settings-subscription-screen', {
         updateCard: function () {
             var self = this;
 
-            this.updateCardForm.errors = [];
-            this.updateCardForm.updated = false;
-            this.updateCardForm.updating = true;
+            this.updateCardForm.errors.forget();
+
+            this.updateCardForm.busy = true;
+            this.updateCardForm.successful = false;
 
             /*
              * Here we will build the payload to send to Stripe, which will
@@ -481,10 +475,9 @@ Vue.component('spark-settings-subscription-screen', {
 
             Stripe.card.createToken(payload, function (status, response) {
                 if (response.error) {
-                    self.updateCardForm.fullErrors = {number: [response.error.message]};
-                    self.updateCardForm.errors = [response.error.message];
+                    self.updateCardForm.errors.set({number: [response.error.message]});
 
-                    self.updateCardForm.updating = false;
+                    self.updateCardForm.busy = false;
                 } else {
                     self.updateCardUsingToken(response.id);
                 }
@@ -501,12 +494,12 @@ Vue.component('spark-settings-subscription-screen', {
                     this.$dispatch('updateUser');
 
                     this.updateCardForm = settingsSubscriptionScreenForms.updateCard();
-                    this.updateCardForm.updated = true;
+                    this.updateCardForm.successful = true;
                 })
                 .error(function (errors) {
-                    this.updateCardForm.updating = false;
+                    this.updateCardForm.busy = false;
 
-                    Spark.setErrorsOnForm(this.updateCardForm, errors);
+                    this.updateCardForm.errors.set(errors);
                 });
         },
 
