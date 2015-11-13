@@ -2,16 +2,12 @@
 
 <!-- Scripts -->
 @section('scripts')
-	<script>
-		TEAM_ID = {{ $team->id }};
-	</script>
-
 	<script src="//cdnjs.cloudflare.com/ajax/libs/URI.js/1.15.2/URI.min.js"></script>
 @append
 
 <!-- Main Content -->
 @section('content')
-<spark-team-settings-screen inline-template>
+<spark-team-settings-screen :team-id="{{ $team->id }}" inline-template>
 	<div id="spark-team-settings-screen" class="container spark-screen">
 		<div class="row">
 			<!-- Tabs -->

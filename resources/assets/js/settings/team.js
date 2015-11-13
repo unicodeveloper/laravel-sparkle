@@ -1,4 +1,6 @@
 Vue.component('spark-team-settings-screen', {
+	props: ['teamId'],
+
     /*
      * Bootstrap the component. Load the initial data.
      */
@@ -33,7 +35,7 @@ Vue.component('spark-team-settings-screen', {
 	     * Get the team from the API.
 	     */
 		getTeam: function () {
-            this.$http.get('/spark/api/teams/' + TEAM_ID)
+            this.$http.get('/spark/api/teams/' + this.teamId)
                 .success(function (team) {
                 	this.team = team;
 
