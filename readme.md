@@ -1,4 +1,4 @@
-# Spark
+# Sparkle
 
 - [Introduction](#introduction)
 - [Installation](#installation)
@@ -12,7 +12,7 @@
 
 **This is an alpha, experimental release of Spark. Things will change. Things will break. Thank you for testing!**
 
-Spark is an experimental project primarily intended for building business oriented SaaS applications, and is highly opinionated towards that use case.
+Sparkle is an experimental project primarily intended for building business oriented SaaS applications, and is highly opinionated towards that use case.
 
 <a name="installation"></a>
 ## Installation
@@ -29,7 +29,7 @@ Next, create a new Laravel application and install Spark:
 
 	spark install
 ```
-After installing Spark, be sure to migrate your database, install the NPM dependencies, and run the `gulp` command. You should also set the `AUTHY_KEY`, `STRIPE_KEY`, and `STRIPE_SECRET` environment variables in your `.env` file.
+After installing Sparkle, be sure to migrate your database, install the NPM dependencies, and run the `gulp` command. You should also set the `AUTHY_KEY`, `STRIPE_KEY`, and `STRIPE_SECRET` environment variables in your `.env` file.
 
 You may also wish to review the `SparkServiceProvider` class that was installed in your application. This provider is the central location for customizing your Spark installation.
 
